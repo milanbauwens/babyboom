@@ -1,0 +1,404 @@
+@import url(https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800&display=swap);
+@import url(https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css);
+.landing {
+  width: 100vw;
+  min-height: 100vh;
+  background-color: #C3DFF3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.landing__container {
+  max-width: 800px;
+  background-color: #C3DFF3;
+  position: fixed;
+  bottom: 0;
+}
+.landing__inner {
+  background-color: #F4F2F2;
+  border-radius: 40px 40px 0px 0px;
+  padding: 20px 50px;
+  height: 55vh;
+  max-width: 800px;
+  width: 100%;
+}
+.landing__header {
+  font-family: "Exo", sans-serif;
+  font-size: 45;
+  font-weight: 800;
+  color: #222222;
+  margin-bottom: 20px;
+}
+.landing__header--pink {
+  color: #D50C68;
+  display: block;
+  font-family: "Raleway", sans-serif;
+}
+.landing__paragraph {
+  font-family: "Exo", sans-serif;
+  font-size: 15;
+  font-weight: 300;
+  color: #222222;
+  margin-bottom: 45px;
+}
+.landing__img {
+  padding-top: 5px;
+  width: 100%;
+  max-width: 800px;
+}
+
+.button__login {
+  margin: 0 auto;
+  display: flex;
+  width: 100%;
+  height: 60px;
+  background-color: #112762;
+  align-items: center;
+  justify-content: center;
+  color: #F4F2F2;
+  text-decoration: none;
+  font-family: "Exo", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  border-radius: 60px;
+  margin-bottom: 30px;
+}
+.button__register {
+  margin: 0 auto;
+  display: flex;
+  width: 100%;
+  height: 60px;
+  border: 2px solid #112762;
+  background-color: #F4F2F2;
+  align-items: center;
+  justify-content: center;
+  color: #112762;
+  text-decoration: none;
+  font-family: "Exo", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  border-radius: 60px;
+}
+
+.header--big {
+  width: 100vw;
+  height: 12.5rem;
+  padding-top: 50px;
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: white;
+  border-radius: 0 0 20px 20px;
+}
+.header--small {
+  width: 100vw;
+  height: 8.6rem;
+  padding-top: 50px;
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: white;
+  border-radius: 0 0 20px 20px;
+}
+.header__title {
+  font-size: 25;
+  font-family: "Exo", sans-serif;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #222222;
+}
+.header__title--pink {
+  color: #D50C68;
+}
+.header__search {
+  width: 100%;
+  border: none;
+  background-color: #F4F2F2;
+  height: 50px;
+  padding: 20px;
+  padding-left: 50px;
+  margin-top: 10px;
+  font-family: "Raleway", sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  color: #222222;
+  border-radius: 10px;
+  background-repeat: no-repeat;
+  background-position-y: center;
+  background-position-x: 15px;
+  background-size: 20px;
+}
+.header__search::-moz-placeholder {
+  color: #ABABAB;
+}
+.header__search:-ms-input-placeholder {
+  color: #ABABAB;
+}
+.header__search::placeholder {
+  color: #ABABAB;
+}
+
+.auth {
+  width: 100vw;
+  min-height: 100vh;
+  padding: 20px 0;
+  background-color: #F4F2F2;
+}
+.auth__container {
+  width: 100vw;
+  margin: 0 auto;
+  min-height: 100vh;
+  background-color: #F4F2F2;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.auth__inner {
+  text-align: center;
+  margin-bottom: 40px;
+  max-width: 800px;
+  width: 70vw;
+}
+.auth__title {
+  font-family: "Exo", sans-serif;
+  font-weight: 500;
+  font-size: 30px;
+}
+.auth__subtitle {
+  font-family: "Raleway", sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+}
+.auth__subtitle--bold {
+  font-family: "Raleway", sans-serif;
+  font-weight: 700;
+  color: #222222;
+  text-decoration: none;
+  font-size: 15px;
+}
+.auth__submit {
+  width: 70vw;
+  max-width: 800px;
+  color: #F4F2F2;
+  background-color: #D50C68;
+  border: none;
+  height: 50px;
+  border-radius: 30px;
+  font-family: "Exo", sans-serif;
+  font-weight: 500;
+  font-size: 25px;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+.auth__illu {
+  width: 147px;
+  margin-top: 20px;
+  margin-right: 50px;
+  margin-bottom: 22px;
+}
+
+.form__label--block {
+  display: block;
+  font-family: "Raleway", sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+  margin-left: 15px;
+  margin-bottom: 5px;
+}
+.form__input {
+  width: 100%;
+  height: 50px;
+  border: none;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  padding: 20px;
+  padding-left: 50px;
+  font-family: "Raleway", sans-serif;
+  font-weight: 400;
+  color: #222222;
+  font-size: 15px;
+  background-repeat: no-repeat;
+  background-position-y: center;
+  background-position-x: 15px;
+  background-size: 20px;
+}
+
+.right {
+  float: right;
+  margin-top: -15px;
+  margin-bottom: 40px;
+}
+
+.margin {
+  padding-bottom: 50px;
+}
+
+.logo {
+  width: 142px;
+  margin-bottom: 45px;
+}
+
+.auth__error {
+  text-align: center;
+  border: 2px solid #D50C68;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  padding: 10px;
+  width: 70vw;
+  max-width: 800px;
+}
+.auth__error--text {
+  color: #D50C68;
+  font-family: "Exo", sans-serif;
+  font-weight: 500;
+  font-size: 17px;
+  margin-bottom: 5px;
+}
+.auth__error--list {
+  list-style: none;
+  margin: 0;
+}
+.auth__error--item {
+  font-family: "Raleway", sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+  color: #222222;
+}
+
+.nav {
+  width: 100vw;
+  height: 6.5rem;
+  position: fixed;
+  bottom: 0;
+  background-color: white;
+  box-shadow: 0 -2px 10px 0 rgba(0, 0, 0, 0.109);
+  padding-top: 1.85rem;
+  border-radius: 20px 20px 0 0;
+}
+.nav__inner {
+  display: flex;
+  justify-content: space-evenly;
+}
+.nav__page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px 0;
+}
+.nav__status {
+  display: none;
+}
+.nav__status--active {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #D50C68;
+}
+.nav__icon {
+  color: #D9D9D9;
+  font-size: 1.85rem;
+}
+.nav__icon--active {
+  color: #D50C68;
+  font-size: 1.85rem;
+}
+
+.body--offwhite {
+  width: 100vw;
+  min-height: 100vh;
+  background-color: #F4F2F2;
+}
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Change the white to any color */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role=list],
+ol[role=list] {
+  list-style: none;
+}
+
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  -webkit-text-decoration-skip: ink;
+          text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+*::before,
+*::after {
+    -webkit-animation-duration: 0.01ms !important;
+            animation-duration: 0.01ms !important;
+    -webkit-animation-iteration-count: 1 !important;
+            animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

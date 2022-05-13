@@ -1,0 +1,40 @@
+@use "sass:map";
+@use "../abstracts/variables.scss" as v;
+
+.button {
+    &__login {
+        margin: 0 auto;
+        display: flex;
+        width: 100%;
+        height: 60px;
+        background-color: map.get(v.$colors, blue-900);
+
+        align-items: center;
+        justify-content: center;
+        color: map.get(v.$colors, offwhite);
+        text-decoration: none;
+        font-family: v.$font-exo;
+        font-size: 20px;
+        font-weight: 400;
+        border-radius: 60px;
+        margin-bottom: 30px;
+    }
+
+    &__register {
+        margin: 0 auto;
+        display: flex;
+        width: 100%;
+        height: 60px;
+        border: 2px solid map-get(v.$colors, blue-900) ;
+        background-color: map.get(v.$colors, offwhite);
+
+        align-items: center;
+        justify-content: center;
+        color: map.get(v.$colors, blue-900);
+        text-decoration: none;
+        font-family: v.$font-exo;
+        font-size: 20px;
+        font-weight: 400;
+        border-radius: 60px;
+    }
+}

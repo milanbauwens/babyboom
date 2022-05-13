@@ -1,0 +1,47 @@
+@use "sass:map";
+@use "../abstracts/variables.scss" as v;
+
+.nav {
+    width: 100vw;
+    height: 6.5rem;
+    position: fixed;
+    bottom: 0;
+    background-color: white;
+    box-shadow: 0 -2px 10px 0 rgba(0, 0, 0, 0.109);
+    padding-top: 1.85rem;
+    border-radius: 20px 20px 0 0 ;
+
+    &__inner {
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    &__page{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 3px 0;
+    }
+
+    &__status{
+
+        display: none;
+
+        &--active{
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: map-get(v.$colors, pink-900 );
+         }
+    }
+
+    &__icon {
+        color: #D9D9D9;
+        font-size: 1.85rem;
+
+        &--active{
+            color: map-get(v.$colors, pink-900 );
+            font-size: 1.85rem;
+        }
+    }
+}

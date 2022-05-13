@@ -1,0 +1,34 @@
+@use "sass:map";
+@use "../../abstracts/variables.scss" as v;
+
+.auth {
+    &__error {
+        text-align: center;
+        border: 2px solid map-get(v.$colors,pink-900 );
+        margin-bottom: 15px;
+        border-radius: 10px;
+        padding: 10px;
+        width: 70vw;
+        max-width: 800px;
+
+        &--text{
+            color: map-get(v.$colors,pink-900 );
+            font-family: v.$font-exo;
+            font-weight: 500;
+            font-size: 17px;
+            margin-bottom: 5px;
+        }
+
+        &--list{
+            list-style: none;
+            margin: 0;
+        }
+
+        &--item {
+            font-family: v.$font-raleway;
+            font-weight: 300;
+            font-size: 15px;
+            color: map-get(v.$colors,black-800 );
+        }
+    }
+}
