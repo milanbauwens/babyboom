@@ -5,25 +5,47 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Models\Category;
+use App\Models\Image;
 use App\Models\Shop;
-use DOMNamedNodeMap;
 use Goutte\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use stdClass;
 use Symfony\Component\DomCrawler\Crawler;
+use Illuminate\Support\Str;
+
+set_time_limit(3600);
 
 class ScrapeController extends Controller
 {
     public function show() {
         $shops = [
-            'ikea' => 'Ikea',
-            'fun' => 'Fun',
-            'dreambaby' => 'Dream Baby'
+            'maymays' => 'May Mays',
+            'mimibaby' => 'Mimi baby',
+            'bollebuik' => 'Bollebuik'
         ];
+        $mimibabyCategories = [];
+        $maymaysCategories = [];
+        $bollebuikCategories = [];
 
-        $categories = Category::all();
 
-        return view('admin.scrape-form', compact('shops'), compact('categories'));
+        $maymaysShop = Shop::where('name', 'May Mays')->first();
+        if($maymaysShop) $maymaysCategories = Category::where('shop_id', $maymaysShop->id)->get();
+
+
+        $mimibabyShop= Shop::where('name', 'Mimi Baby')->first();
+        if($mimibabyShop) $mimibabyCategories = Category::where('shop_id', $mimibabyShop->id)->get();
+
+        $bollebuikShop= Shop::where('name', 'Bollebuik')->first();
+        if($bollebuikShop) $bollebuikCategories = Category::where('shop_id', $bollebuikShop->id)->get();
+
+
+        return view('admin.scrape-form',[
+            "shops" => $shops,
+            "maymaysCategories" => $maymaysCategories,
+            "mimibabyCategories" => $mimibabyCategories,
+            'bollebuikCategories' => $bollebuikCategories
+        ]);
     }
 
      /**
@@ -32,108 +54,126 @@ class ScrapeController extends Controller
 
     public function scrapeCategories(Request $r) {
         switch($r->shop) {
-            // case 'dreambaby' :
-            //     $this->scrapeDreambabyCategories($r->url);
-            //     break;
-            // case 'fun' :
-            //     $this->scrapeFunCategories($r->url);
-            //     break;
-            case 'ikea' :
-                $shop = Shop::find('Ikea', 'name');
-
-                if($shop) { $shop->truncate(); } else {
+            case 'bollebuik' :
+                $shop = Shop::where('name', 'Bollebuik')->first();
+                if($shop) {
+                    $this->scrapeBollebuikCategories($r->url, $shop->id);
+                 } else {
                     $shopEntity = new Shop();
-                    $shopEntity->name = 'Ikea';
-                    $shopEntity->url = 'https://www.ikea.com/be/nl/?ref=gwp-start';
+                    $shopEntity->name = 'Bollebuik';
+                    $shopEntity->url = $r->url;
                     $shopEntity->save();
+                    $this->scrapeBollebuikCategories($r->url, $shopEntity->id);
+                }
+                return redirect()->route('scrape');
+                break;
+            case 'mimibaby' :
+                $shop = Shop::where('name', 'Mimi Baby')->first();
+
+                if($shop) {
+                        $this->scrapeMimibabyCategories($r->url, $shop->id);
+                    } else {
+                        $shopEntity = new Shop();
+                        $shopEntity->name = 'Mimi Baby';
+                        $shopEntity->url = $r->url;
+                        $shopEntity->save();
+                        $this->scrapeMimibabyCategories($r->url, $shopEntity->id);
+                    }
+                return redirect()->route('scrape');
+                break;
+            case 'maymays' :
+                $shop = Shop::where('name', 'May Mays')->first();
+
+                if($shop) {  $this->scrapeMaymaysCategories($r->url, $shop->id); }
+                else {
+                    $shopEntity = new Shop();
+                    $shopEntity->name = 'May Mays';
+                    $shopEntity->url = 'https://www.maymays.nl/';
+                    $shopEntity->save();
+                    $this->scrapeMaymaysCategories($r->url, $shopEntity->id);
                 };
-                $this->scrapeIkeaCategories($r->url, $shopEntity->id);
                 return redirect()->route('scrape');
                 break;
         }
     }
 
-    // private function createIkeaShop(){
-    //     $shop = Shop::where('name', 'Ikea')->firstOrFail();
-
-    //     if($shop) $shop->delete();
-
-    //     $shopEntity = new Shop();
-    //     $shopEntity->name = 'Ikea';
-    //     $shopEntity->url = 'https://www.ikea.com/be/nl/?ref=gwp-start';
-    //     $shopEntity->save();
-    // }
-
-    // private function scrapeDreambabyCategories($url) {
-    //     $client = new Client();
-    //     $crawler = $client->request('GET', $url);
-
-    //     $categories = $crawler  ->filter('#categoryFacetList_1_3074457345618260656_4099276460824427707 li a')
-    //                             ->each(function(Crawler $parentcrawler ) {
-    //                                 // Get data from crawler
-    //                                 $url = $parentcrawler->attr('href');
-    //                                 $title = $parentcrawler->filter('.facetName')->text();
-
-    //                                 // Create new object which holds all the data
-    //                                 $cat = new stdClass();
-    //                                 $cat->title = $title;
-    //                                 $cat->url = $url;
-
-    //                                 return $cat;
-    //                             });
-
-    //     foreach ($categories as $scrapeCategory) {
-    //         // Checking if the category is already in the database
-    //         $exists = Category::where('url', $scrapeCategory->url)->count();
-    //         if($exists > 0) continue;
-
-    //         // Adding the category to the database
-    //         $categoryEntity = new Category();
-    //         $categoryEntity->title = $scrapeCategory->title;
-    //         $categoryEntity->url = $scrapeCategory->url;
-    //         $categoryEntity->save();
-    //     }
-    // }
-
-    // private function scrapeFunCategories($url) {
-    //     $client = new Client();
-    //     $crawler = $client->request('GET', $url);
-
-    //     $categories = $crawler->filter('.children-category-container .swiper-wrapper a')
-    //                         ->each(function(Crawler $parentcrawler){
-    //                             // Get data from crawler
-    //                             $url = $parentcrawler->attr('href');
-    //                             $title = $parentcrawler->filter('.category-item-label .category-item-title')->text();
-
-    //                             // Create new object which holds all the data
-    //                             $cat = new stdClass();
-    //                             $cat->title = $title;
-    //                             $cat->url = $url;
-
-    //                             return $cat;
-    //                         });
-    //     foreach ($categories as $scrapeCategory) {
-    //         // Checking if the category is already in the database
-    //         $exists = Category::where('url', $scrapeCategory->url)->count();
-    //         if($exists > 0) continue;
-
-    //         // Adding the category to the database
-    //         $categoryEntity = new Category();
-    //         $categoryEntity->title = $scrapeCategory->title;
-    //         $categoryEntity->url = $scrapeCategory->url;
-    //         $categoryEntity->save();
-    //     }
-    // }
-
-    private function scrapeIkeaCategories($url, $shop_id) {
+    private function scrapeMaymaysCategories($url, $shop_id) {
         $client = new Client();
         $crawler = $client->request('GET', $url);
 
-        $categories = $crawler->filter('.vn__nav a')
-                                ->each(function(Crawler $parentcrawler){
+        $categories = $crawler->filter('.product-category a')
+            ->each(function($node) {
+                $name = $node->filter('.header-title')->text();
+                $url = $node->attr('href');
+
+                $cat = new stdClass();
+                $cat->name = $name;
+                $cat->url = $url;
+                return $cat;
+            });
+
+        foreach ($categories as $scrapeCategoy) {
+            //  check if exists
+            $exists = Category::where('url', $scrapeCategoy->url)->count();
+            if ($exists > 0) continue;
+
+            // create/add category to database
+            $categoryEntity = new Category();
+            $categoryEntity->name = $scrapeCategoy->name;
+            $categoryEntity->url = $scrapeCategoy->url;
+            $categoryEntity->shop_id = $shop_id;
+            $categoryEntity->save();
+        }
+    }
+
+    private function scrapeMimibabyCategories($url, $shop_id) {
+        $client = new Client();
+        $crawler = $client->request('GET', $url);
+        $categories = $crawler->filter('.main-navigation-menu a')
+            ->each(function($node) {
+                $cat = new stdClass();
+                $node;
+                if($node->attr('title') === 'Merken') {
+                    return;
+                } else {
+                    $cat->name = $node->attr('title');
+                }
+                if($node->attr('href') === '/nl/merken') {
+                    return;
+                } else {
+                    $cat->url = $node->attr('href');
+                }
+                return $cat;
+            });
+
+        foreach ($categories as $scrapeCategory) {
+            if(!$scrapeCategory) {
+                return;
+            } else {
+                // Checking if the category is already in the database
+                $exists = Category::where('url', $scrapeCategory->url)->count();
+                if($exists > 0) continue;
+
+                // Adding the category to the database
+                $categoryEntity = new Category();
+                $categoryEntity->name = $scrapeCategory->name;
+                $categoryEntity->url = $scrapeCategory->url;
+                $categoryEntity->shop_id = $shop_id;
+                $categoryEntity->save();
+            }
+        }
+    }
+
+
+    private function scrapeBollebuikCategories($url, $shop_id) {
+        $client = new Client();
+        $crawler = $client->request('GET', $url);
+
+        $categories = $crawler->filter('.nav-primary li .has-children')
+                                ->each(function(Crawler $node){
                                     // Get data from crawler
-                                    $url = $parentcrawler->attr('href');
-                                    $title = $parentcrawler->text();
+                                    $url = $node->attr('href');
+                                    $title = $node->text();
 
                                     // Create new object which holds all the data
                                     $cat = new stdClass();
@@ -144,16 +184,20 @@ class ScrapeController extends Controller
                                 });
 
         foreach ($categories as $scrapeCategory) {
-        // Checking if the category is already in the database
-        $exists = Category::where('url', $scrapeCategory->url)->count();
-        if($exists > 0) continue;
+            // Checking if the category is already in the database
+            $exists = Category::where('url', $scrapeCategory->url)->count();
+            if($exists > 0) continue;
 
-        // Adding the category to the database
-        $categoryEntity = new Category();
-        $categoryEntity->name = $scrapeCategory->name;
-        $categoryEntity->url = $scrapeCategory->url;
-        $categoryEntity->shop_id = $shop_id;
-        $categoryEntity->save();
+            // Adding the category to the database
+            if($scrapeCategory->name === 'Outlet') {
+                continue;
+            } else {
+                $categoryEntity = new Category();
+                $categoryEntity->name = $scrapeCategory->name;
+                $categoryEntity->url = $scrapeCategory->url;
+                $categoryEntity->shop_id = $shop_id;
+                $categoryEntity->save();
+            }
         }
     }
 
@@ -163,217 +207,309 @@ class ScrapeController extends Controller
 
     public function scrapeArticles(Request $r) {
         switch($r->shop) {
-            // case 'dreambaby' :
-            //     return $this->scrapeDreambabyArticles($r->url);
-            //     break;
-            // case 'fun' :
-            //     return $this->scrapeFunArticles($r->url);
-            //     break;
-            case 'ikea' :
-                return $this->scrapeIkeaArticles($r->url);
+            case 'bollebuik' :
+                return $this->scrapeBollebuikArticles($r->url);
+                break;
+            case 'mimibaby' :
+                return $this->scrapeMimibabyArticles($r->url);
+                break;
+            case 'maymays' :
+                return $this->scrapeMaymaysArticles($r->url);
                 break;
         }
+
+        $maymaysArticles = [];
+        $mimibabyArticles = [];
+
+        $maymaysShop = Shop::where('name', 'May Mays')->first();
+        if($maymaysShop) $maymaysArticles = Article::where('shop_id', $maymaysShop->id)->get();
+
+
+        $mimibabyShop= Shop::where('name', 'Mimi Baby')->first();
+        if($mimibabyShop) $mimibabyArticles = Article::where('shop_id', $mimibabyShop->id)->get();
+
+        return view('admin.scrape-results', [
+            'maymaysArticles' => $maymaysArticles,
+            'mimibabyArticles' => $mimibabyArticles
+        ]);
     }
 
-    private function scrapeIkeaArticles($url) {
+    private function scrapeMaymaysArticles($url) {
         $client = new Client();
         $crawler = $client->request('GET', $url);
-        $data = $this->scrapeIkeaPageDate($crawler);
 
+        $articles = $this->scrapeMaymaysPageData($crawler);
 
-        for($i = 0; $i <= 20; $i++) {
-            $crawler = $this->getNextIkeaPage($crawler);
+        for ($i=0; $i <= 5; $i++) {
+            $crawler = $this->getNextMaymaysPage($crawler);
             if(!$crawler) break;
-            $arrayArticles = array_merge($data, $this->scrapeIkeaPageDate($crawler));
+            $articles = array_merge($articles, $this->scrapeMaymaysPageData($crawler));
+        }
+
+        $this->storeMaymaysArticles($articles, $url);
+    }
+
+    private function scrapeBollebuikArticles($url) {
+        $client = new Client();
+        $arrayArticles = [];
+
+        for ($i=1; $i <= 250; $i++) {
+            $crawler = $client->request('GET', $url . '?p=' . $i);
+            if(!$crawler) break;
+            $this->scrapeBollebuikPageData($crawler);
+            $arrayArticles = array_merge($arrayArticles, $this->scrapeBollebuikPageData($crawler));
             $unfilteredArticles = collect($arrayArticles);
             $articles = $unfilteredArticles->unique('identifier');
             $articles->all();
         }
 
-            $unfilteredArticles = collect($data);
-            $articles = $unfilteredArticles->unique('identifier');
-            $articles->all();
-
-       foreach ($articles as $article) {
-           $articleEntity = new Article();
-           $articleEntity->name = $article->title;
-           $articleEntity->url = $article->url;
-           $articleEntity->price = $article->price;
-           $articleEntity->description = $article->description;
-           $articleEntity->identifier = $article->identifier;
-
-           $category = Category::where('url', $url)->firstOrFail();
-           $articleEntity->category_id = $category->id;
-           $articleEntity->shop_id = $category->shop_id;
-           $articleEntity->save();
-       }
-
-        $ikeaArticles = Article::all();
-
-        return view('admin.scrape-results', compact('ikeaArticles'));
+        $this->storeBollebuikArticles($articles, $url);
     }
 
-    private function scrapeIkeaPageDate($crawler) {
-        $articles = $crawler->filter('.pip-product-compact .pip-product-compact__bottom-wrapper a')
-                ->each(function(Crawler $parentcrawler) {
-                        $article = new stdClass();
+    public function scrapeMimibabyArticles($url) {
+        $client = new Client();
+        $arrayArticles = [];
 
-                        $euro = $parentcrawler->filter('.pip-price__integer')->text();
-                        if($parentcrawler->filter('.pip-compact-price-package__price-wrapper .pip-price__decimals')->count()) {
-                            $cent = $parentcrawler->filter('.pip-compact-price-package__price-wrapper .pip-price__decimals')->last()->text();
-                        } else {
-                            $cent = ",00";
-                        }
+        for ($i=1; $i <= 50; $i++) {
+            $crawler = $client->request('GET', $url . '?order=name-asc&p=' . $i);
+            if(!$crawler) break;
+            $arrayArticles = array_merge($arrayArticles, $this->scrapeMimibabyPagedata($crawler));
+            $unfilteredArticles = collect($arrayArticles);
+            $articles = $unfilteredArticles->unique('id');
+            $articles->all();
+        }
 
-                        $article->title = $parentcrawler->filter('.pip-header-section__title--small')->text();
-                        $article->url = $parentcrawler->attr('href');
-                        $article->price = floatval($euro . str_replace(',', '.', $cent));
+        $this->storeMimibabyArticles($articles, $url);
+    }
 
-                        $details = $this->getDetailIkeaData($article->url);
+    private function scrapeMaymaysPageData($crawler) {
+        $articles = $crawler->filter('.product')
+            ->each(function($node) {
 
-                        $article->img = $details->img;
-                        $article->description = $details->desc;
-                        $article->identifier = $details->identifier;
+                $image = $node->filter('noscript')->first()->filter('img')->attr('src');
+                $id = $node->filter('.gtm4wp_productdata')->attr('data-gtm4wp_product_id');
+                $name = $node->filter('.gtm4wp_productdata')->attr('data-gtm4wp_product_name');
+                $price = $node->filter('.gtm4wp_productdata')->attr('data-gtm4wp_product_price');
+                $url = $node->filter('.gtm4wp_productdata')->attr('data-gtm4wp_product_url');
 
-                        return $article;
-                });
+                $client = new Client();
+                $urlCrawler = $client->request('GET', $url);
+                $description = $urlCrawler->filter('.product-short-description')->text();
+
+                $article = new stdClass();
+                $article->id = $id;
+                $article->name = $name;
+                $article->image = $image;
+                $article->price = (float)$price;
+                $article->url = $url;
+                $article->description = $description;
+
+                return $article;
+            });
 
         return $articles;
     }
 
-    private function getNextIkeaPage($crawler){
+    private function scrapeMimibabyPagedata($crawler) {
+        $articles = $crawler->filter('.product-box .card-body')
+            ->each(function($node) {
+                $art = new stdClass();
+                $art->title = $node->filter('.product-info .product-name')->text();
+                $priceStringed = ltrim($node->filter('.product-info .product-price-info .product-price')->text(), '€');
+                $pricebugged = str_replace(',', '.', $priceStringed);
+                $price = preg_replace('/\s+/u', '', $pricebugged);
+                $euro = (float)$price;
+                $art->price = $euro;
+                $url = $node->filter('.product-info .product-name')->attr('href');
+                $art->url = $url;
+                $art->image = $node->filter('.product-image-wrapper .product-image-link img')->first()->attr('src');
+                $art->description = $this->getDescriptionMimibaby($art->url);
 
-        if($crawler->filter('link[rel="next"]')->count()) {
-            $linkTag = $crawler->filter('link[rel="next"]')->attr('href');
-        } else return;
+                $segments = explode('/', parse_url($url, PHP_URL_PATH));
+                $unique = explode('-', $segments[2]);
+                $identifier = end($unique);
+                $art->identifier = $identifier;
+                return $art;
+            });
+
+        return $articles;
+    }
+
+    public function scrapeBollebuikPagedata($crawler) {
+        $articles = $crawler->filter('.products-grid .item')
+                            ->each(function($node) {
+                                $art = new stdClass();
+                                if($node->filter('.inner-wrap h3 a')->count() > 0) {
+                                    $art->title = $node->filter('.inner-wrap h3 a')->attr('title');
+                                    $art->url = $node->filter('.inner-wrap h3 a')->attr('href');
+                                    $details = $this->getDetailsBollebuik($art->url);
+                                    $art->description = $details->description;
+                                    $art->image = $details->img;
+                                    $art->identifier = $details->identifier;
+                                }
+
+
+                                $priceStringed = ltrim($node->filter('.price-box .price')->first()->text(), '€ ');
+                                $pricebugged = str_replace(',', '.', $priceStringed);
+                                $price = preg_replace('/\s+/u', '', $pricebugged);
+                                $euro = (float)$price;
+                                $art->price = $euro;
+
+                                return $art;
+                            });
+        return $articles;
+    }
+
+    private function getNextMaymaysPage($crawler) {
+        $linkTag = $crawler->filter('.page-number.next')->first();
+        if($linkTag->count() <= 0) return;
+        $link = $linkTag->link();
+        if(!$link) return;
 
         $client = new Client();
-        $nextCrawler = $client->request('GET',$linkTag);
+        $nextCrawler = $client->click($link);
 
         return $nextCrawler;
     }
 
-
-    private function getDetailIkeaData($url) {
+    public function getDetailsBollebuik($url) {
         $client = new Client();
         $crawler = $client->request('GET', $url);
+        if($crawler->filter('.product-image-gallery img')->first()->count() > 0) {
+            $detailImage = $crawler->filter('.product-image-gallery img')->first()->attr('src');
+        }
+        if($crawler->filter('.details-open-close .slide')->first()->count() > 0) {
+            $detailDescription = $crawler->filter('.details-open-close .slide')->first()->text();
+        }
+
+        if($crawler->filter('.product-code')->count() > 0)
+        {
+            $detailIndentifier = ltrim($crawler->filter('.product-code')->text(), 'Art.nr. ');
+        }
+
+        $contains = Str::contains($detailDescription, ['Schrijf', 'review']);
 
         $details = new stdClass();
-            $img = $crawler->filter('.product-pip .pip-aspect-ratio-image__image')->attr('src');
-            $description = $crawler->filter('.product-pip .pip-product-summary__description')->text();
-            $identifier = $crawler->filter('.pip-product-identifier__value')->text();
-
-
-        $details->img = $img;
-        $details->desc = $description;
-        $details->identifier = $identifier;
+        if($contains)  {
+            $details->description = '';
+        } else {
+            $details->description = $detailDescription;
+        }
+        $details->img = $detailImage;
+        $details->identifier = $detailIndentifier;
 
         return $details;
     }
 
-
-    // private function scrapeDreambabyArticles($url) {
-    //     $client = new Client();
-    //     $crawler = $client->request('GET', $url);
-    //     $articles = $this->scrapeDreambabyPageDate($crawler);
-
-    //     // for($i = 0; $i <= 10; $i++) {
-    //     //     $crawler = $this->getNextDreambabyPage($crawler);
-    //     //     if(!$crawler) break;
-    //     //     $articles = array_merge($articles, $this->scrapeDreambabyPageDate($crawler));
-    //     // }
-
-    //     // dd($articles);
+    public function getDescriptionMimibaby($url) {
+        $client = new Client();
+        $crawler = $client->request('GET', $url);
+        $description = $crawler->filter('.product-detail-tabs-content .product-detail-description-text');
+        if ($description->count() <= 0) return null;
+        $description = $crawler->filter('.product-detail-tabs-content .product-detail-description-text')->text();
+        return $description;
+    }
 
 
-    //     return view('scrape-results', compact('articles'));
-    // }
+    /**
+     * Store articles
+     */
 
-    // private function scrapeDreambabyPageDate($crawler) {
-    //     $crawler->filter('.productsCategoriesList .productListingWidget .product_listing_container ul li .product .product_info')
-    //             ->each(function(Crawler $parentcrawler) {
-    //                     $article = new stdClass();
-
-    //                     $article->title = $parentcrawler->filter('.product_name')->text();
-    //                     $article->price = floatval($parentcrawler->filter('.product_price input')->attr('value'));
-    //                     $article->image = $parentcrawler->filter('.product_image .image img')->first()->attr('data-src');
-
-    //                     return $article;
-    //             });
-    // }
-
-    // private function getNextDreambabyPage($crawler){
-    //     $linkTag = $crawler->filter('.footer_bar navigation_bar .paging_controls .right_arrow');
-    //     // dd($linkTag);
-    //     if($linkTag->count() <= 0) return;
-    //     $link = $linkTag->link();
-    //     $client = new Client();
-    //     $nextCrawler = $client->click($link);
-
-    //     return $nextCrawler;
-    // }
+    private function storeMaymaysArticles($articles, $url) {
+        $category = Category::where('url', $url)->firstOrFail();
+        $fileSystem = Storage::disk('public');
 
 
+        foreach ($articles as $article) {
+            $articleEntity = new Article();
+            $articleEntity->name = $article->name;
+            $articleEntity->url = $article->url;
+            $articleEntity->price = $article->price;
+            $articleEntity->description = $article->description;
+            $articleEntity->identifier = $article->id;
+            $articleEntity->category_id = $category->id;
+            $articleEntity->shop_id = $category->shop_id;
+            $articleEntity->save();
+
+            $randomName = date('d') . '-' . Str::random(10) . '.jpg';
+            $path = 'products/images/maymays/';
+            $fullPath = $path . $randomName;
+
+            $fileSystem->putFileAs($path, $article->image, $randomName);
 
 
+            $image = new Image();
+            $image->path = $fullPath;
+            $image->alt = $article->name;
+            $image->article_id = $articleEntity->id;
+            $image->save();
+        }
+    }
 
-    // private function getNextFunPage($crawler){
-    //     $linkTag = $crawler->filter('.footer_bar navigation_bar .paging_controls .right_arrow');
-    //     // dd($linkTag);
-    //     if($linkTag->count() <= 0) return;
-    //     $link = $linkTag->link();
-    //     $client = new Client();
-    //     $nextCrawler = $client->click($link);
+    private function storeMimibabyArticles($articles, $url) {
+        $category = Category::where('url', $url)->firstOrFail();
+        $fileSystem = Storage::disk('public');
 
-    //     return $nextCrawler;
-    // }
+        foreach ($articles as $article) {
+            $articleEntity = new Article();
+            $articleEntity->name = $article->title;
+            $articleEntity->url = $article->url;
+            $articleEntity->price = $article->price;
+            if(!$article->description) {
+                $articleEntity->description = '';
+            } else {
+                $articleEntity->description = $article->description;
+            }
 
-    // private function scrapeFunArticles($url) {
-    //     $client = new Client();
-    //     $crawler = $client->request('GET', $url);
-    //     $articles = $this->scrapeFunPageData($crawler);
+            $articleEntity->identifier = $article->identifier;
 
-    //     // for($i = 0; $i <= 10; $i++) {
-    //     //     $crawler = $this->getNextFunPage($crawler);
-    //     //     if(!$crawler) break;
-    //     //     $articles = array_merge($articles, $this->scrapeFunPageDate($crawler));
-    //     // }
+            $articleEntity->category_id = $category->id;
+            $articleEntity->shop_id = $category->shop_id;
+            $articleEntity->save();
 
-    //     return view('scrape-results', compact('articles'));
-    // }
+            $randomName = date('d') . '-' . Str::random(10) . '.jpg';
+            $path = 'products/images/mimibaby/';
+            $fullPath = $path . $randomName;
 
-    // private function scrapeFunPageData($crawler) {
-    //     $crawler->filter('.products .item .product-item-info .product-item-details')
-    //     ->each(function(Crawler $parentcrawler) {
-    //             $article = new stdClass();
+            $fileSystem->putFileAs($path, $article->image, $randomName);
 
-    //             $article->title = $parentcrawler->filter('strong')->text();
-    //             $euro = $parentcrawler->filter('.price')->first()->text();
-    //             dd($euro);
-    //             // $cent = $parentcrawler->filter('.price span sup')->first()->text();
-    //             // $article->price = floatval($euro . ',' . $cent);
+            $image = new Image();
+            $image->path = $fullPath;
+            $image->alt = $article->title;
+            $image->article_id = $articleEntity->id;
+            $image->save();
+        }
+    }
 
-    //             dump($article);
-    //             return $article;
-    //     });
-    // }
-
-
-
-
-
-
-    // private function scrapeBabydumpArticles($url) {
-
-    // }
-
-    // private function scrapeBabydumpPageData($url) {
-
-    // }
+    private function storeBollebuikArticles($articles, $url) {
+        $category = Category::where('url', $url)->firstOrFail();
+        $fileSystem = Storage::disk('public');
 
 
+        foreach ($articles as $article) {
+            $articleEntity = new Article();
+            $articleEntity->name = $article->title;
+            $articleEntity->url = $article->url;
+            $articleEntity->price = $article->price;
+            $articleEntity->description = $article->description;
+            $articleEntity->identifier = $article->identifier;
+            $articleEntity->category_id = $category->id;
+            $articleEntity->shop_id = $category->shop_id;
+            $articleEntity->save();
+
+            $randomName = date('d') . '-' . Str::random(10) . '.jpg';
+            $path = 'products/images/bollebuik/';
+            $fullPath = $path . $randomName;
+
+            $fileSystem->putFileAs($path, $article->image, $randomName);
 
 
-
+            $image = new Image();
+            $image->path = $fullPath;
+            $image->alt = $article->title;
+            $image->article_id = $articleEntity->id;
+            $image->save();
+        }
+    }
 
 }

@@ -37,4 +37,65 @@
         font-weight: 400;
         border-radius: 60px;
     }
+
+    &__add {
+        text-decoration: none;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background-color:map.get(v.$colors, pink-900);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 5px 0 #c8c8c87a;
+
+        &--inner {
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    }
+
+    &__filter {
+        text-decoration: none;
+        padding: 5px 10px;
+        height: 30px;
+        border-radius: 15px;
+        background-color:map.get(v.$colors, pink-900);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 5px 0 #c8c8c87a;
+        color: white;
+        font-size: 15px;
+        font-family: v.$font-exo;
+
+        &--inner {
+            color: white;
+            font-size: 15px;
+            font-family: v.$font-exo;
+            margin-right: 5px;
+        }
+    }
+
+    &__paginator {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        color: white;
+        width: 125px;
+        height: 40px;
+        font-size: 15px;
+        font-weight: 600;
+        font-family: v.$font-exo;
+        border-radius: 40px;
+        background-color:map.get(v.$colors, blue-900);
+
+        &--inner {
+            margin-left: 5px;
+            margin-right: 5px;
+            font-size: 20px;
+        }
+    }
 }

@@ -28,20 +28,58 @@
         </div>
     </form>
 
+    <h2>May Mays Categories</h2>
+
     <table>
-        @foreach ($categories as $category )
+        @foreach ($maymaysCategories as $maymaysCategory )
             <tr>
-                <td>{{$category->name}}</td>
+                <td>{{$maymaysCategory->name}}</td>
                 <td>
                     <form action="{{ route('scrape.articles') }}" method="POST">
                         @csrf
-                        <input type="hidden" name="url" value="{{$category->url}}">
-                        <input type="hidden" name="shop" value="ikea">
+                        <input type="hidden" name="url" value="{{$maymaysCategory->url}}">
+                        <input type="hidden" name="shop" value="maymays">
                         <button type="submit">Scrape all articles</button>
                     </form>
                 </td>
             </tr>
         @endforeach
+    </table>
+
+    <h2>Mimi Baby Categories</h2>
+
+    <table>
+            @foreach ($mimibabyCategories as $mimibabyCategory )
+                <tr>
+                    <td>{{$mimibabyCategory->name}}</td>
+                    <td>
+                        <form action="{{ route('scrape.articles') }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="url" value="{{$mimibabyCategory->url}}">
+                            <input type="hidden" name="shop" value="mimibaby">
+                            <button type="submit">Scrape all articles</button>
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
+    </table>
+
+    <h2>Bollebuik Categories</h2>
+
+    <table>
+            @foreach ($bollebuikCategories as $bollebuikCategory )
+                <tr>
+                    <td>{{$bollebuikCategory->name}}</td>
+                    <td>
+                        <form action="{{ route('scrape.articles') }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="url" value="{{$bollebuikCategory->url}}">
+                            <input type="hidden" name="shop" value="bollebuik">
+                            <button type="submit">Scrape all articles</button>
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
     </table>
 </body>
 </html>

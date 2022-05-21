@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\Admin\ScrapeController;
+use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\StorageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,14 +21,12 @@ Route::get('/', function () {
     return view('pages.landingpage');
 });
 
-Route::get('/dashboard', function () {
-    return view('pages.dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'show'])->middleware(['auth'])->name('dashboard');
 
 Route::prefix('products')->middleware('auth')->name('products')->group(
     function(){
         // Show the products page
-        Route::get('/', function(){ return view('pages.products');});
+        Route::get('/', [ArticleController::class, 'show']);
         // ...
     }
 );

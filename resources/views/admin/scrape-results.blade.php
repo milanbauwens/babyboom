@@ -18,5 +18,17 @@
         <p>{{$article->identifier}}</p>
     </article>
     @endforeach
+
+    <h1>Mimi Baby Articles</h1>
+    @foreach ($mimibabyArticles as $article)
+    <article>
+        <h5>{{$article->title}}</h5>
+        <p>{{$article->price}}</p>
+        <p>{{$article->url}}</p>
+        {{-- <img src="{{$article->img}}" /> --}}
+        <p>{{$article->description}}</p>
+        <p>{{$article->identifier}}</p>
+    </article>
+    @endforeach
 </body>
 </html>

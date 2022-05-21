@@ -7,6 +7,10 @@
 @import url(https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800&display=swap);
 @import url(https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800&display=swap);
 @import url(https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800&display=swap);
 @import url(https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css);
 .landing {
   width: 100vw;
@@ -86,6 +90,61 @@
   font-size: 20px;
   font-weight: 400;
   border-radius: 60px;
+}
+.button__add {
+  text-decoration: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #D50C68;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px 0 rgba(200, 200, 200, 0.4784313725);
+}
+.button__add--inner {
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+}
+.button__filter {
+  text-decoration: none;
+  padding: 5px 10px;
+  height: 30px;
+  border-radius: 15px;
+  background-color: #D50C68;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px 0 rgba(200, 200, 200, 0.4784313725);
+  color: white;
+  font-size: 15px;
+  font-family: "Exo", sans-serif;
+}
+.button__filter--inner {
+  color: white;
+  font-size: 15px;
+  font-family: "Exo", sans-serif;
+  margin-right: 5px;
+}
+.button__paginator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: white;
+  width: 125px;
+  height: 40px;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: "Exo", sans-serif;
+  border-radius: 40px;
+  background-color: #112762;
+}
+.button__paginator--inner {
+  margin-left: 5px;
+  margin-right: 5px;
+  font-size: 20px;
 }
 
 .header--big {
@@ -241,6 +300,51 @@
   padding-bottom: 50px;
 }
 
+.content {
+  width: 90%;
+  margin: 0 auto;
+  max-width: 1200px;
+  padding-bottom: 145px;
+}
+.content__subtitle {
+  font-family: "Raleway", sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+.content__container {
+  margin-top: 30px;
+}
+.content__inner--flex {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+.content__inner--grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  -moz-column-gap: 50px;
+       column-gap: 50px;
+}
+@media only screen and (max-width: 600px) {
+  .content__inner--grid {
+    display: block;
+    margin-bottom: 50px;
+  }
+}
+
+.pagination {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.pagination--first {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+}
+
 .logo {
   width: 142px;
   margin-bottom: 45px;
@@ -309,6 +413,114 @@
 .nav__icon--active {
   color: #D50C68;
   font-size: 1.85rem;
+}
+
+.shops__container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.shop {
+  width: 100px;
+  background-color: white;
+  height: 100px;
+  border-radius: 15px;
+  box-shadow: 0 2px 10px 0 rgba(200, 200, 200, 0.4784313725);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.shop__img {
+  width: 70px;
+  height: 70px;
+}
+
+.wishlist {
+  width: 100%;
+  height: 160px;
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 2px 10px 0 rgba(200, 200, 200, 0.4784313725);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.wishlist__name {
+  color: #D50C68;
+  font-family: "Raleway", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+}
+.wishlist__progress {
+  color: #6F92CB;
+  font-family: "Raleway", sans-serif;
+  font-size: 15px;
+  font-weight: 300;
+}
+.wishlist__img {
+  width: 181px;
+}
+
+.product {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 50px;
+  padding: 20px 20px;
+  text-decoration: none;
+  width: 100%;
+  height: 120px;
+  margin-bottom: 20px;
+  border-radius: 15px;
+  background-color: white;
+  box-shadow: 0 2px 10px 0 rgba(200, 200, 200, 0.4784313725);
+}
+.product__title {
+  font-family: "Exo", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 5px;
+  color: #222222;
+}
+.product__price {
+  font-family: "Exo", sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  color: #222222;
+}
+.product__action {
+  width: 35px;
+  height: 25px;
+  border: none;
+  background-color: #D50C68;
+  border-radius: 5px;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  color: white;
+}
+.product__img {
+  width: 85px;
+  height: 85px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  flex-basis: 30%;
+}
+.product__shop {
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+.product__inner {
+  flex-basis: 70%;
+}
+.product__inner--flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .body--offwhite {

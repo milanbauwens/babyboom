@@ -13,5 +13,26 @@
             </div>
         </header>
 
+        <section class="content">
+            <article class="content__container shops">
+                <h2 class="content__subtitle">Shops</h2>
+                <div class="shops__container">
+                    @foreach ($shops as $shop )
+                        @include('components.shop-component')
+                    @endforeach
+                </div>
+            </article>
+
+            <article class="content__container">
+                <div class="content__inner--flex">
+                    <h2 class="content__subtitle">My wishlists</h2>
+                    <a class="button__add" href="{{route('products')}}"><i class="bi bi-plus-lg button__add--inner"></i></a>
+                </div>
+                <div class="content__inner--grid">
+                    @include('components.wishlist-component')
+                </div>
+            </article>
+
+        </section>
     </main>
 @endsection

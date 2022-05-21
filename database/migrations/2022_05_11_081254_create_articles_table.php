@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignId('shop_id')->constrained();
             $table->string('name');
             $table->string('url');
-            $table->string('description');
+            $table->longText('description');
             $table->string('identifier');
             $table->float('price');
             $table->timestamp('scraped_on')->useCurrent();

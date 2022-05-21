@@ -11,5 +11,20 @@
                 </form>
             </div>
         </header>
+        <section class="content">
+            <article class="content__container">
+                <div class="content__inner--flex">
+                    <h2 class="content__subtitle">Products</h2>
+                    <a class="button__filter" href="{{route('products')}}"><i class="bi bi-funnel-fill button__filter--inner"></i>Filters</a>
+                </div>
+                <div class="content__inner--grid">
+                    @foreach ($articles as $article)
+                        @include('components.product-component')
+                    @endforeach
+                </div>
+            </article>
+            {!! $articles->links('components.pagination') !!}
+        </section>
+
     </main>
 @endsection
