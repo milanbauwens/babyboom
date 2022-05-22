@@ -4,6 +4,6 @@
     <x-navigation />
 
     <main>
-
+        
     </main>
 @endsection

@@ -1,0 +1,90 @@
+@use "sass:map";
+@use "../abstracts/variables.scss" as v;
+
+.filter {
+    &__subtitle {
+        font-family: v.$font-exo;
+        font-size: 15px;
+        font-weight: 700;
+        color: map-get(v.$colors, black-800 );
+    }
+
+    &__container {
+        &--grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap:0 10px;
+        }
+
+        &--flex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        &--row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: nowrap;
+            margin: 20px 0;
+        }
+    }
+
+    &__label {
+        &--checkbox {
+            font-family: v.$font-exo;
+            font-size: 15px;
+            font-weight: 400;
+            color: map-get(v.$colors, black-800 );
+            padding: 10px 20px;
+            background-color: white;
+            cursor: pointer;
+            border: 1.5px solid map-get(v.$colors, pink-900);
+            border-radius: 20px;
+        }
+
+        &--minmax {
+            font-family: v.$font-exo;
+            font-size: 15px;
+            font-weight: 300;
+            color: map-get(v.$colors, black-800 );
+        }
+    }
+
+    &__input {
+        margin-bottom: 10px;
+
+        &--checkbox {
+            display: none;
+        }
+
+        &--minmax {
+            font-family: v.$font-exo;
+            font-size: 15px;
+            font-weight: 400;
+            width: 100px;
+            border-radius: 10px;
+            border: none;
+            padding: 5px 10px;
+            color: map-get(v.$colors, black-800 );
+
+            &::placeholder {
+                font-family: v.$font-exo;
+                font-size: 15px;
+                font-weight: 300;
+                border-radius: 10px;
+                border: none;
+                padding: 5px 10px;
+                color: map-get(v.$colors, blue-gray );
+            }
+        }
+
+    }
+
+}
+
+input[type="checkbox"]:checked + label {
+    background-color: map-get(v.$colors, pink-900);
+}

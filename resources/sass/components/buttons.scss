@@ -20,6 +20,30 @@
         margin-bottom: 30px;
     }
 
+    &__logout{
+        display: flex;
+        width: 100%;
+        height: 60px;
+        background-color: map.get(v.$colors, blue-900);
+        align-items: center;
+        justify-content: center;
+        color: map.get(v.$colors, offwhite);
+        text-decoration: none;
+        font-family: v.$font-exo;
+        font-size: 20px;
+        font-weight: 400;
+        border-radius: 60px;
+        margin-bottom: 20px;
+    }
+
+    &__delete {
+        text-decoration: underline;
+        color:map.get(v.$colors, pink-900) ;
+        font-family: v.$font-exo;
+        font-size: 15px;
+        font-weight: 400;
+    }
+
     &__register {
         margin: 0 auto;
         display: flex;
@@ -56,9 +80,31 @@
         }
     }
 
+    &__edit {
+        cursor: pointer;
+        border: none;
+        text-decoration: none;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background-color:map.get(v.$colors, pink-900);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 5px 0 #c8c8c87a;
+
+        &--inner {
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+        }
+    }
+
     &__filter {
         text-decoration: none;
         padding: 5px 10px;
+        border: none;
+        cursor: pointer;
         height: 30px;
         border-radius: 15px;
         background-color:map.get(v.$colors, pink-900);
@@ -76,6 +122,20 @@
             font-family: v.$font-exo;
             margin-right: 5px;
         }
+    }
+
+    &__submit {
+        width: 100%;
+        color: map-get(v.$colors, offwhite );
+        background-color: map-get(v.$colors, pink-900 );
+        border: none;
+        height: 50px;
+        border-radius:30px;
+        font-family: v.$font-exo;
+        font-weight: 500;
+        font-size: 25px;
+        margin-bottom: 20px;
+        margin-top: 10px;
     }
 
     &__paginator {

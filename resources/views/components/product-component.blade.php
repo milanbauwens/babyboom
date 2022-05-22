@@ -1,7 +1,7 @@
 
 
 <a class="product" href="{{route('products')}}">
-    <img class="product__img" src="{{asset('storage/' . $article->path)}}" alt="{{$article->alt}}">
+    <img class="product__img" loading="lazy" src="{{asset('storage/' . $article->path)}}" alt="{{$article->alt}}">
     <div class="product__inner">
         <h3 class="product__title">{{Str::limit($article->alt, 20, '...')}}</h3>
         @if ($article->name ==='Bollebuik')
