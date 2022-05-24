@@ -13,4 +13,16 @@ class Article extends Model
     {
         return $this->belongsToMany(Wishlist::class);
     }
+
+    public function Image() {
+        return $this->hasOne(Image::class);
+    }
+
+    public function Shop() {
+        return $this->belongsTo(Shop::class);
+    }
+
+    public function Category() {
+        return $this->hasOne(Category::class);
+    }
 }

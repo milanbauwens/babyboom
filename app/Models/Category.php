@@ -11,11 +11,11 @@ class Category extends Model
 
     protected $with = ['shop'];
 
-    public function shop() {
+    public function Shop() {
         return $this->belongsTo(Shop::class);
     }
 
-    public function article() {
+    public function Article() {
         return $this->hasMany(Article::class);
     }
 }
