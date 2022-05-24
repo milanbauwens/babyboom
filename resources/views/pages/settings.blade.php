@@ -73,9 +73,6 @@
                                 {{ __('Log Out') }}
                             </x-responsive-nav-link>
                         </form>
-                        <a href="{{route('settings.delete')}}" class="button__delete" >
-                            Delete account
-                        </a>
                 </div>
             </div>
         </section>

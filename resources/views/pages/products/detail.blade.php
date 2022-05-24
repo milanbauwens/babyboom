@@ -7,7 +7,11 @@
         <section class="content">
             <article class="content__container">
                 <div class="content__inner--flex">
+                    @if(str_contains(url()->previous(), 'wishlists'))
+                        <a class="button__back" href="{{url()->previous()}}"><i class="bi bi-arrow-left button__add--inner"></i></a>
+                    @else
                         <a class="button__back" href="{{route('products')}}"><i class="bi bi-arrow-left button__add--inner"></i></a>
+                    @endif
                 </div>
 
                 @if(session()->has('status'))

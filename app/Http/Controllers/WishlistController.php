@@ -43,7 +43,7 @@ class WishlistController extends Controller
         $wishlistEntity->save();
 
         $wishlist = Wishlist::find($wishlistEntity->id, 'id');
-        $wishlist->slug = '/' . $wishlist->id . '/' . $r->name . '/';
+        $wishlist->slug =$r->name . '-' . $wishlist->id;
         $wishlist->save();
 
         return redirect()->route('wishlists')->with('status', 'Wishlist was made succesfully!');

@@ -28,11 +28,18 @@
                     <h2 class="content__subtitle">My wishlists</h2>
                     <a class="button__add" href="{{route('wishlists.new')}}"><i class="bi bi-plus-lg button__add--inner"></i></a>
                 </div>
-                <div class="content__inner--grid">
-                    @foreach ($wishlists as $wishlist )
-                        @include('components.wishlist-component')
-                    @endforeach
-                </div>
+                @if (count($wishlists) === 0 )
+                    <div class="favorites__container">
+                        <img style="margin-bottom: 30px" class="detail__img--solo" src="{{asset('images/father.svg')}}" alt="">
+                        <a class="button__login" href="{{route('wishlists.create')}}">Create wishlist</a>
+                    </div>
+                @else
+                    <div class="content__inner--grid">
+                        @foreach ($wishlists as $wishlist )
+                            @include('components.wishlist-component')
+                        @endforeach
+                    </div>
+                @endif
             </article>
         </section>
     </main>

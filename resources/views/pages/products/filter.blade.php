@@ -14,7 +14,10 @@
 
         <section class="content">
             <article class="content__container">
-                <h3 class="content__subtitle">Filter Products</h3>
+                <div class="content__inner--flex">
+                    <h3 class="content__subtitle">Filter Products</h3>
+                    <a class="button__back" href="{{url()->previous()}}"><i class="bi bi-x-lg button__add--inner"></i></a>
+                </div>
 
                     @if ($errors->any())
                         <div>

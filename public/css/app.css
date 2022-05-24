@@ -126,6 +126,8 @@
 }
 .wishlist__inner {
   margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
 }
 .wishlist__wrapper {
   margin-bottom: 20px;
@@ -240,24 +242,38 @@
      object-fit: contain;
   background-color: white;
 }
+.detail__img--wishlist {
+  width: 100%;
+  margin-bottom: 50px;
+  max-width: 500px;
+}
 .detail__shop {
   width: 150px;
   border-radius: 15px;
   box-shadow: 0 2px 10px 0 rgba(200, 200, 200, 0.4784313725);
 }
 .detail__shop--link {
+  display: block;
   width: 150px;
+}
+.detail__data {
+  font-size: 15px;
+  font-family: "Exo", sans-serif;
+  font-weight: 400;
 }
 .detail__identifier {
   font-size: 15px;
   font-family: "Exo", sans-serif;
   font-weight: 400;
 }
-.detail__subtitle {
+.detail__subtitle, .detail__subtitle--pink {
   font-size: 20px;
   font-family: "Exo", sans-serif;
   font-weight: 500;
   margin-bottom: 10px;
+}
+.detail__subtitle--pink {
+  color: #D50C68;
 }
 .detail__description {
   font-size: 15px;
@@ -280,6 +296,13 @@
   font-size: 15px;
   font-family: "Raleway", sans-serif;
   font-weight: 400;
+}
+.detail__wrapper {
+  background-color: white;
+  margin-bottom: 50px;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 2px 10px 0 rgba(200, 200, 200, 0.4784313725);
 }
 
 .button__login {
@@ -458,6 +481,13 @@
   margin-left: 5px;
   margin-right: 5px;
   font-size: 20px;
+}
+.button__simple {
+  font-size: 20px;
+  border: none;
+  background-color: white;
+  cursor: pointer;
+  color: #222222;
 }
 
 .header--xl {
@@ -714,6 +744,9 @@
   display: flex;
   align-items: baseline;
   justify-content: space-between;
+}
+.content__inner--bottom {
+  margin-bottom: 30px;
 }
 .content__inner--grid {
   display: grid;
@@ -976,6 +1009,7 @@
   color: #222222;
 }
 .product__action {
+  cursor: pointer;
   color: white;
   border: none;
   width: 50px;
@@ -987,7 +1021,11 @@
   align-items: center;
   justify-content: center;
 }
+.product__link {
+  text-decoration: none;
+}
 .product__img {
+  text-decoration: none;
   width: 85px;
   height: 85px;
   -o-object-fit: contain;

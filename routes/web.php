@@ -31,14 +31,14 @@ Route::prefix('products')->middleware('auth')->name('products')->group(
     function(){
         // Show the products page
         Route::get('/', [ArticleController::class, 'show']);
-        Route::get('/filter', [ArticleController::class, 'ArticlesByFilters'])->name('.filters');
+        Route::get('/filter', [ArticleController::class, 'articlesByFilters'])->name('.filters');
         Route::get('/detail/{id}', [ArticleController::class, 'showProductDetail'])->name('.detail');
+        Route::get('/{shop_id}', [ArticleController::class, 'articlesByShop'])->name('.byShop');
     }
 );
 
 Route::prefix('favorites')->middleware('auth')->name('favorites')->group(
     function(){
-        // Show the products page
         Route::get('/', [FavoriteController::class, 'show']);
         Route::get('/add/{article_id}', [FavoriteController::class, 'add'])->name('.add');
         Route::get('/delete/{article_id}/{favorite_id}', [FavoriteController::class, 'delete'])->name('.delete');
@@ -48,7 +48,6 @@ Route::prefix('favorites')->middleware('auth')->name('favorites')->group(
 Route::prefix('settings')->middleware('auth')->name('settings')->group(
     function(){
         Route::get('/', [UserController::class, 'show']);
-        Route::get('/delete', [UserController::class, 'deleteUser'])->name('.delete');
         Route::get('/edit', [UserController::class, 'show'])->name('.edit');
         Route::post('/edit', [UserController::class, 'updateUser'])->name('.update');
     }
@@ -60,7 +59,9 @@ Route::prefix('wishlists')->middleware('auth')->name('wishlists')->group(
         Route::get('/new', [WishlistController::class, 'newWishlist'])->name('.new');
         Route::post('/new', [WishlistController::class, 'createWishlist'])->name('.create');
         Route::get('/add/{article_id}', [ArticleWishlistController::class, 'add'])->name('.addProduct');
+        Route::get('/delete/{wishlist_id}', [ArticleWishlistController::class, 'delete'])->name('.delete');
         Route::post('/create', [ArticleWishlistController::class, 'store'])->name('.storeProduct');
+        Route::get('/detail/{id}', [ArticleWishlistController::class, 'showWishlistDetail'])->name('.detail');
     }
 );
 

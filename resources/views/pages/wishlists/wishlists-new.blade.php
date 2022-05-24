@@ -6,6 +6,9 @@
     <main>
         <section class="content">
             <article class="content__container">
+                <div class="content__inner--bottom">
+                    <a class="button__back" href="{{url()->previous()}}"><i class="bi bi-arrow-left button__add--inner"></i></a>
+                </div>
                 <form class="wishlist__form" action="{{route('wishlists.create')}}" method="POST">
                     @csrf
                     <h2 class="content__subtitle">Create wishlist</h2>

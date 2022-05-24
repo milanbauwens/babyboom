@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 
 class ArticleController extends Controller{
     public function show(){
+        // models goedzetten
         $articles = Article::orderBy('images.id', 'asc')
                             ->join('images', 'images.article_id', '=', 'articles.id')
                             ->join('shops', 'shops.id', '=', 'articles.shop_id')
@@ -44,7 +45,20 @@ class ArticleController extends Controller{
         ]);
     }
 
-    public function ArticlesByFilters(Request $r) {
+    public function articlesByShop($shop_id){
+        $articles = Article::where('shop_id', $shop_id)
+        ->orderBy('images.id', 'asc')
+        ->join('images', 'images.article_id', '=', 'articles.id')
+        ->join('shops', 'shops.id', '=', 'articles.shop_id')
+        ->paginate(30)
+        ->withQueryString();
+
+        return view('pages.products.products', [
+            'articles' => $articles,
+        ]);
+    }
+
+    public function articlesByFilters(Request $r) {
         if(count($r->all()) > 0) {
             $r->validate([
                 'categories' => 'array',

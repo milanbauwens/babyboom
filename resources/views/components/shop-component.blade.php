@@ -1,4 +1,4 @@
-<a class="shop" href="{{route('products')}}">
+<a class="shop" href="{{route('products.byShop', ['shop_id' => $shop->id])}}">
     <div class="shop__inner">
         @if ($shop->name === 'Bollebuik')
             <img class="shop__img" src="{{asset('storage/logos/bollebuik-logo.jpeg')}}" alt="Logo of {{$shop->name}}">

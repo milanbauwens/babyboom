@@ -17,17 +17,6 @@ class UserController extends Controller
         ]);
     }
 
-    public function deleteUser(){
-        $user = User::find(\auth()->user()->id);
-
-        Auth::logout();
-
-        if ($user->delete()) {
-
-             return Redirect::route('landing')->with('global', 'Your account has been deleted!');
-        }
-    }
-
     public function updateUser(Request $r){
         $user = auth()->user();
         $userEntity = User::find($user->id);

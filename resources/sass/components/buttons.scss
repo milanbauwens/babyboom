@@ -197,4 +197,12 @@
             font-size: 20px;
         }
     }
+
+    &__simple {
+        font-size: 20px;
+        border: none;
+        background-color: white;
+        cursor: pointer;
+        color: map-get(v.$colors, black-800 );
+    }
 }

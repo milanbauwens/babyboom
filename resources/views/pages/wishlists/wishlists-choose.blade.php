@@ -10,7 +10,10 @@
 
         <section class="content">
             <article class="content__container">
-                        @if (count($wishlists) === 0)
+                <div class="content__inner--bottom">
+                    <a class="button__back" href="{{url()->previous()}}"><i class="bi bi-arrow-left button__add--inner"></i></a>
+                </div>
+                    @if (count($wishlists) === 0)
                             <div class="content__container--center">
                                 <h2 class="content__subtitle">You have no wishlists...</h2>
                                 <a class="button__login" href="{{route('wishlists.create')}}">Create one now</a>
@@ -22,13 +25,12 @@
                             </div>
 
                             {{-- Display errors to user --}}
-                            @if($errors->any())
-                                @foreach ($errors->all() as $error )
+                            @if(session()->has('error'))
                                 <div class='content__error'>
-                                        <p>{{$error}}</p>
+                                    {{session('error')}}
                                 </div>
-                                @endforeach
                             @endif
+
 
                             <form class="content__container" action="{{route('wishlists.storeProduct')}}" method="POST">
                                 @csrf
@@ -47,7 +49,7 @@
 
                                 <input type="hidden" name="article_id" value="{{$article_id}}">
 
-                                <button type="submit" class="button__submit" id="wishlistSubmit"> Add product </button>
+                                <button type="submit" class="button__submit" id="wishlistSubmit"> Add to list </button>
                             </form>
                         @endif
             </article>
