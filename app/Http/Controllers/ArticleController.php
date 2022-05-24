@@ -12,11 +12,10 @@ use Illuminate\Http\Request;
 class ArticleController extends Controller{
     public function show(){
         // models goedzetten
-        $articles = Article::orderBy('images.id', 'asc')
-                            ->join('images', 'images.article_id', '=', 'articles.id')
-                            ->join('shops', 'shops.id', '=', 'articles.shop_id')
+        $articles = Article::orderBy('id', 'asc')
                             ->paginate(30)
                             ->withQueryString();
+
 
         return view('pages.products.products', [
             'articles' => $articles,
@@ -48,8 +47,6 @@ class ArticleController extends Controller{
     public function articlesByShop($shop_id){
         $articles = Article::where('shop_id', $shop_id)
         ->orderBy('images.id', 'asc')
-        ->join('images', 'images.article_id', '=', 'articles.id')
-        ->join('shops', 'shops.id', '=', 'articles.shop_id')
         ->paginate(30)
         ->withQueryString();
 
@@ -133,29 +130,22 @@ class ArticleController extends Controller{
         if($shops){
             $articles = Article::whereBetween('price', [$minPrice, $maxPrice])
             ->whereIn('shops.name', array_keys($shops))
-            ->join('images', 'images.article_id', '=', 'articles.id')
-            ->join('shops', 'shops.id', '=', 'articles.shop_id')
             ->paginate(30)
             ->withQueryString();
         } elseif($categories) {
             $articles = Article::whereBetween('price', [$minPrice, $maxPrice])
             ->whereIn('categories.name', array_keys($categories))
-            ->join('images', 'images.article_id', '=', 'articles.id')
-            ->join('shops', 'shops.id', '=', 'articles.shop_id')
             ->paginate(30)
             ->withQueryString();
         } elseif($shops && $categories) {
             $articles = Article::whereBetween('price', [$minPrice, $maxPrice])
             ->whereIn('shops.name', array_keys($shops))
             ->whereIn('categories.name', array_keys($categories))
-            ->join('images', 'images.article_id', '=', 'articles.id')
-            ->join('shops', 'shops.id', '=', 'articles.shop_id')
+
             ->paginate(30)
             ->withQueryString();
         } elseif (!$shops && !$categories) {
             $articles = Article::whereBetween('price', [$minPrice, $maxPrice])
-            ->join('images', 'images.article_id', '=', 'articles.id')
-            ->join('shops', 'shops.id', '=', 'articles.shop_id')
             ->paginate(30)
             ->withQueryString();
         }
