@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Article extends Model
+class Wishlist extends Model
 {
     use HasFactory;
 
-    public function wishlists()
+    public function articles()
     {
-        return $this->belongsToMany(Wishlist::class);
+        return $this->belongsToMany(Article::class);
     }
 }

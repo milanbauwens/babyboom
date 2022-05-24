@@ -1,0 +1,88 @@
+@use "sass:map";
+@use "../abstracts/variables.scss" as v;
+
+.detail {
+
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 50px;
+
+    @media only screen and (max-width: 600px) {
+        margin-top: 40px;
+        display: block
+    }
+
+    &__container {
+        @media only screen and (max-width: 600px) {
+            margin-top: 30px;
+        }
+    }
+
+    &__inner {
+        margin-bottom: 30px;
+    }
+
+    &__price {
+        font-size: 30px;
+        color: map-get(v.$colors, pink-900 );
+        font-family: v.$font-exo;
+        font-weight: 800;
+    }
+
+    &__img{
+        border-radius: 15px;
+        max-width: 500px;
+        width: 100%;
+        object-fit: contain;
+        background-color: white;
+    }
+
+    &__shop{
+        width: 150px;
+        border-radius: 15px;
+        box-shadow: 0 2px 10px 0 #c8c8c87a;
+
+        &--link {
+            width: 150px;
+        }
+    }
+
+    &__identifier{
+        font-size: 15px;
+        font-family: v.$font-exo;
+        font-weight: 400;
+    }
+
+    &__subtitle{
+        font-size: 20px;
+        font-family: v.$font-exo;
+        font-weight: 500;
+        margin-bottom: 10px;
+    }
+
+    &__description{
+        font-size: 15px;
+        font-family: v.$font-exo;
+        font-weight: 400;
+    }
+
+    &__title {
+
+        font-size: 25px;
+        font-family: v.$font-exo;
+        font-weight: 600;
+
+        @media only screen and (max-width: 600px) {
+            font-size: 20px;
+            font-family: v.$font-exo;
+            font-weight: 600;
+        }
+    }
+
+    &__category {
+        font-size: 15px;
+        font-family: v.$font-raleway;
+        font-weight: 400;
+    }
+}

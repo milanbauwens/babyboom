@@ -34,15 +34,16 @@
     }
 
     &__action {
-        width: 35px;
-        height: 25px;
+        color: white;
         border: none;
-        background-color:map-get(v.$colors, pink-900) ;
+        width: 50px;
+        height: 30px;
         border-radius: 5px;
+        background-color: map-get(v.$colors, pink-900 );
+        font-size: 20px;
         display: flex;
         align-items: center;
         justify-content: center;
-        color: white;
     }
 
     &__img {

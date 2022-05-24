@@ -9,8 +9,8 @@
 
     &__subtitle {
         font-family: v.$font-raleway;
-        font-weight: 400;
-        font-size: 20px;
+        font-weight: 500;
+        font-size: 25px;
         margin-bottom: 20px;
     }
 
@@ -20,10 +20,60 @@
         &--solo {
             margin-top: 60px;
         }
+
+        &--center {
+            margin-top: 150px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+    &__paragraph{
+        font-family: v.$font-raleway;
+        font-weight: 300;
+        font-size: 15px;
+        margin-bottom: 20px;
+    }
+
+    &__status {
+        margin-top: 20px;
+        background-color: #bbe7bb;
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        min-height: 50px;
+        margin-bottom: 30px;
+
+        font-family: v.$font-raleway;
+        font-weight: 500;
+        font-size: 15px;
+        color: map-get(v.$colors, black-800 );
+
+    }
+
+    &__error {
+        margin-top: 20px;
+        background-color: #e7a4a4;
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        min-height: 50px;
+        margin-bottom: 30px;
+
+        font-family: v.$font-raleway;
+        font-weight: 500;
+        font-size: 15px;
+        color: map-get(v.$colors, black-800 );
+
     }
 
     &__inner {
-
         &--flex {
             display: flex;
             align-items: baseline;

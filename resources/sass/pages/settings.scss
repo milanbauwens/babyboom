@@ -36,7 +36,7 @@
     }
 
     &__img{
-        width: 200px;
+        width: 150px;
         margin-left: 50px;
     }
 
@@ -47,6 +47,7 @@
         border-radius: 10px;
         margin-top: 10px;
         padding: 20px;
+        font-size: 15px;
         font-family: v.$font-raleway;
         font-weight: 400;
         color: map-get(v.$colors, black-800 );

@@ -85,6 +85,6 @@
 
 }
 
-input[type="checkbox"]:checked + label {
+.filter__input--checkbox:checked + label {
     background-color: map-get(v.$colors, pink-900);
 }

@@ -11,6 +11,7 @@
         "laravel/framework": "^9.2",
         "laravel/sanctum": "^2.14.1",
         "laravel/tinker": "^2.7",
+        "rawilk/laravel-form-components": "^7.1",
         "tucker-eric/eloquentfilter": "^3.1"
     },
     "require-dev": {

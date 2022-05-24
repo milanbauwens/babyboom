@@ -11,28 +11,56 @@
 
     <main>
         <section class="content">
-            <article class="content__container--solo">
-                <div class="content__inner--flex">
-                    <h2 class="content__subtitle">Preferences</h2>
-                    <button id="editSettings" class="button__edit"><i class="bi bi-pen-fill button__edit--inner"></i></button>
-                </div>
+            <div class="content__container--solo">
+                    <form action="{{route('settings.update')}}" method="POST">
+                        <div class="content__inner--flex">
+                            @csrf
+                            <h2 class="content__subtitle">Preferences</h2>
+                                @if (Route::getCurrentRoute()->getName() === 'settings.edit')
+                                    <button type="submit" id="editSettings" class="button__edit">
+                                        <i class="bi bi-check-lg button__edit--inner"></i>
+                                    </button>
+                                @else
+                                    <a id="editSettings" href="{{route('settings.edit')}}" class="button__edit">
+                                        <i class="bi bi-pen-fill button__edit--inner"></i>
+                                    </a>
+                                @endif
+                        </div>
 
-                <div class="settings__container">
-                    <form id="userData" class="settings__user">
-                        <div class="settings__inner">
-                            <h3 class="settings__title">Firstname</h3>
-                            <p class="settings__data">{{$user->firstname}}</p>
+                        <div class="settings__container">
+                            @if(session()->has('status'))
+                                <div class='content__status'>
+                                    {{session('status')}}
+                                </div>
+                            @endif
+                            <div id="userData" class="settings__user">
+                                <div class="settings__inner">
+                                    <h3 class="settings__title">Firstname</h3>
+                                    @if (Route::getCurrentRoute()->getName() === 'settings.edit')
+                                        <input class="settings__input" type="text" name="firstname" value="{{$user->firstname}}">
+                                    @else
+                                        <p class="settings__data">{{$user->firstname}}</p>
+                                    @endif
+                                </div>
+                                <div class="settings__inner">
+                                    <h3 class="settings__title">Lastname</h3>
+                                    @if (Route::getCurrentRoute()->getName() === 'settings.edit')
+                                        <input class="settings__input" type="text" name="lastname" value="{{$user->lastname}}">
+                                    @else
+                                        <p class="settings__data">{{$user->lastname}}</p>
+                                    @endif
+                                </div>
+                                <div class="settings__inner">
+                                    <h3 class="settings__title">Email</h3>
+                                    @if (Route::getCurrentRoute()->getName() === 'settings.edit')
+                                        <input class="settings__input" type="text" name="email" value="{{$user->email}}">
+                                    @else
+                                        <p class="settings__data">{{$user->email}}</p>
+                                    @endif
+                                </div>
                         </div>
-                        <div class="settings__inner">
-                            <h3 class="settings__title">Lastname</h3>
-                            <p class="settings__data">{{$user->lastname}}</p>
-                        </div>
-                        <div class="settings__inner">
-                            <h3 class="settings__title">Email</h3>
-                            <p class="settings__data">{{$user->email}}</p>
-                        </div>
+                        <img class="settings__img" src="{{asset('images/child.png')}}" alt="">
                     </form>
-                    <img class="settings__img" src="{{asset('images/child.png')}}" alt="">
                 </div>
 
                 <div class="settings__container--bottom">
@@ -49,9 +77,7 @@
                             Delete account
                         </a>
                 </div>
-
-
-            </article>
+            </div>
         </section>
     </main>
 @endsection

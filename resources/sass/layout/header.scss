@@ -3,6 +3,17 @@
 
 .header {
 
+    &--xl {
+        display: flex;
+        justify-content: center;
+        width: 100vw;
+        height: 17.5rem;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        background-color: white;
+        border-radius: 0 0 25px 25px;
+    }
+
     &--big {
         width: 100vw;
         height: 12.5rem;
@@ -10,7 +21,7 @@
         padding-left: 20px;
         padding-right: 20px;
         background-color: white;
-        border-radius: 0 0 20px 20px ;
+        border-radius: 0 0 20px 20px;
     }
 
     &--small{
@@ -24,6 +35,7 @@
     }
 
     &--mini{
+        overflow: hidden;
         width: 100vw;
         height: 6rem;
         display: flex;
@@ -44,6 +56,17 @@
         color: map-get(v.$colors, black-800 );
         &--pink{
             color: map-get(v.$colors, pink-900 );
+        }
+    }
+
+    &__img {
+        width: 100%;
+        max-width: 500px;
+        object-fit: cover;
+
+        &--full{
+            width: 100vw;
+            object-fit: contain;
         }
     }
 

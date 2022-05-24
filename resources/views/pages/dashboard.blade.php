@@ -26,13 +26,14 @@
             <article class="content__container">
                 <div class="content__inner--flex">
                     <h2 class="content__subtitle">My wishlists</h2>
-                    <a class="button__add" href="{{route('products')}}"><i class="bi bi-plus-lg button__add--inner"></i></a>
+                    <a class="button__add" href="{{route('wishlists.new')}}"><i class="bi bi-plus-lg button__add--inner"></i></a>
                 </div>
                 <div class="content__inner--grid">
-                    @include('components.wishlist-component')
+                    @foreach ($wishlists as $wishlist )
+                        @include('components.wishlist-component')
+                    @endforeach
                 </div>
             </article>
-
         </section>
     </main>
 @endsection

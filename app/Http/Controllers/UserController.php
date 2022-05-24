@@ -17,7 +17,7 @@ class UserController extends Controller
         ]);
     }
 
-    private function deleteUser(){
+    public function deleteUser(){
         $user = User::find(\auth()->user()->id);
 
         Auth::logout();
@@ -26,5 +26,23 @@ class UserController extends Controller
 
              return Redirect::route('landing')->with('global', 'Your account has been deleted!');
         }
+    }
+
+    public function updateUser(Request $r){
+        $user = auth()->user();
+        $userEntity = User::find($user->id);
+
+        $r->validate([
+            "firstname" => "string|required",
+            "lastname"=> "string|required",
+            "email" => "required|unique:users,email,$user->id|email|max:255"
+        ]);
+
+        $userEntity->firstname = $r->firstname;
+        $userEntity->lastname = $r->lastname;
+        $userEntity->email = $r->email;
+        $userEntity->save();
+
+        return redirect()->route('settings')->with('status', "We've updated your profile succesfully!");
     }
 }
