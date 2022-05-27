@@ -18,7 +18,7 @@
                         {{-- Display errors to user --}}
                         @if($errors->any())
                             @foreach ($errors->all() as $error )
-                            <div class='radius flex items-center justify-center h-12 bg-red-200 text-red-800'>
+                            <div class='content__error'>
                                     <p>{{$error}}</p>
                             </div>
                             @endforeach

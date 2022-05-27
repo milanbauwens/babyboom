@@ -8,6 +8,8 @@
 @import 'pages/wishlist';
 @import 'pages/favorites';
 @import 'pages/detail';
+@import 'pages/success';
+@import 'pages/admin';
 @import 'components/buttons';
 @import 'layout/header';
 @import 'layout/auth';
@@ -17,6 +19,7 @@
 @import 'components/filter';
 @import 'components/errors/auth';
 @import 'components/nav';
+@import 'components/basket';
 @import 'components/shopcomponent';
 @import 'components/wishlistcomponent';
 @import 'components/product-component';

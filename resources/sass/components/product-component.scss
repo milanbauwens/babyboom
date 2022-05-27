@@ -18,6 +18,10 @@
     background-color: white;
     box-shadow: 0 2px 10px 0 #c8c8c87a;
 
+    &--disabled{
+        opacity: 20%;
+    }
+
     &__title{
         font-family:v.$font-exo;
         font-size: 15px;

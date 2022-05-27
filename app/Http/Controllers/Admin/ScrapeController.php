@@ -18,6 +18,11 @@ set_time_limit(3600);
 
 class ScrapeController extends Controller
 {
+
+    public function showDashboard(){
+        return view('admin.dashboard');
+    }
+
     public function show() {
         $shops = [
             'maymays' => 'May Mays',
@@ -421,28 +426,33 @@ class ScrapeController extends Controller
 
 
         foreach ($articles as $article) {
-            $articleEntity = new Article();
-            $articleEntity->name = $article->name;
-            $articleEntity->url = $article->url;
-            $articleEntity->price = $article->price;
-            $articleEntity->description = $article->description;
-            $articleEntity->identifier = $article->id;
-            $articleEntity->category_id = $category->id;
-            $articleEntity->shop_id = $category->shop_id;
-            $articleEntity->save();
+            // Check if article already exists
+            $exists = Article::where('identifier', $article->identifier)->first();
 
-            $randomName = date('d') . '-' . Str::random(10) . '.jpg';
-            $path = 'products/images/maymays/';
-            $fullPath = $path . $randomName;
+            if($exists === null) {
+                $articleEntity = new Article();
+                $articleEntity->name = $article->name;
+                $articleEntity->url = $article->url;
+                $articleEntity->price = $article->price;
+                $articleEntity->description = $article->description;
+                $articleEntity->identifier = $article->id;
+                $articleEntity->category_id = $category->id;
+                $articleEntity->shop_id = $category->shop_id;
+                $articleEntity->save();
 
-            $fileSystem->putFileAs($path, $article->image, $randomName);
+                $randomName = date('d') . '-' . Str::random(10) . '.jpg';
+                $path = 'products/images/maymays/';
+                $fullPath = $path . $randomName;
+
+                $fileSystem->putFileAs($path, $article->image, $randomName);
 
 
-            $image = new Image();
-            $image->path = $fullPath;
-            $image->alt = $article->name;
-            $image->article_id = $articleEntity->id;
-            $image->save();
+                $image = new Image();
+                $image->path = $fullPath;
+                $image->alt = $article->name;
+                $image->article_id = $articleEntity->id;
+                $image->save();
+            }
         }
     }
 
@@ -451,33 +461,38 @@ class ScrapeController extends Controller
         $fileSystem = Storage::disk('public');
 
         foreach ($articles as $article) {
-            $articleEntity = new Article();
-            $articleEntity->name = $article->title;
-            $articleEntity->url = $article->url;
-            $articleEntity->price = $article->price;
-            if(!$article->description) {
-                $articleEntity->description = '';
-            } else {
-                $articleEntity->description = $article->description;
+            // Check if article already exists
+            $exists = Article::where('identifier', $article->identifier)->first();
+
+            if($exists === null) {
+                $articleEntity = new Article();
+                $articleEntity->name = $article->title;
+                $articleEntity->url = $article->url;
+                $articleEntity->price = $article->price;
+                if(!$article->description) {
+                    $articleEntity->description = '';
+                } else {
+                    $articleEntity->description = $article->description;
+                }
+
+                $articleEntity->identifier = $article->identifier;
+
+                $articleEntity->category_id = $category->id;
+                $articleEntity->shop_id = $category->shop_id;
+                $articleEntity->save();
+
+                $randomName = date('d') . '-' . Str::random(10) . '.jpg';
+                $path = 'products/images/mimibaby/';
+                $fullPath = $path . $randomName;
+
+                $fileSystem->putFileAs($path, $article->image, $randomName);
+
+                $image = new Image();
+                $image->path = $fullPath;
+                $image->alt = $article->title;
+                $image->article_id = $articleEntity->id;
+                $image->save();
             }
-
-            $articleEntity->identifier = $article->identifier;
-
-            $articleEntity->category_id = $category->id;
-            $articleEntity->shop_id = $category->shop_id;
-            $articleEntity->save();
-
-            $randomName = date('d') . '-' . Str::random(10) . '.jpg';
-            $path = 'products/images/mimibaby/';
-            $fullPath = $path . $randomName;
-
-            $fileSystem->putFileAs($path, $article->image, $randomName);
-
-            $image = new Image();
-            $image->path = $fullPath;
-            $image->alt = $article->title;
-            $image->article_id = $articleEntity->id;
-            $image->save();
         }
     }
 
@@ -487,28 +502,33 @@ class ScrapeController extends Controller
 
 
         foreach ($articles as $article) {
-            $articleEntity = new Article();
-            $articleEntity->name = $article->title;
-            $articleEntity->url = $article->url;
-            $articleEntity->price = $article->price;
-            $articleEntity->description = $article->description;
-            $articleEntity->identifier = $article->identifier;
-            $articleEntity->category_id = $category->id;
-            $articleEntity->shop_id = $category->shop_id;
-            $articleEntity->save();
+            // Check if article already exists
+            $exists = Article::where('identifier', $article->identifier)->first();
 
-            $randomName = date('d') . '-' . Str::random(10) . '.jpg';
-            $path = 'products/images/bollebuik/';
-            $fullPath = $path . $randomName;
+            if($exists === null) {
+                $articleEntity = new Article();
+                $articleEntity->name = $article->title;
+                $articleEntity->url = $article->url;
+                $articleEntity->price = $article->price;
+                $articleEntity->description = $article->description;
+                $articleEntity->identifier = $article->identifier;
+                $articleEntity->category_id = $category->id;
+                $articleEntity->shop_id = $category->shop_id;
+                $articleEntity->save();
 
-            $fileSystem->putFileAs($path, $article->image, $randomName);
+                $randomName = date('d') . '-' . Str::random(10) . '.jpg';
+                $path = 'products/images/bollebuik/';
+                $fullPath = $path . $randomName;
+
+                $fileSystem->putFileAs($path, $article->image, $randomName);
 
 
-            $image = new Image();
-            $image->path = $fullPath;
-            $image->alt = $article->title;
-            $image->article_id = $articleEntity->id;
-            $image->save();
+                $image = new Image();
+                $image->path = $fullPath;
+                $image->alt = $article->title;
+                $image->article_id = $articleEntity->id;
+                $image->save();
+            }
         }
     }
 

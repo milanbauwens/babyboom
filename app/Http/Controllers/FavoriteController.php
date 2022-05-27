@@ -2,19 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
 use App\Models\Favorite;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class FavoriteController extends Controller
 {
     public function show(){
-        $user = auth()->user();
-
-        $articles = Favorite::where('user_id', $user->id)
-        ->join('articles', 'articles.id', '=', 'favorites.article_id')
-        ->join('images', 'images.article_id', '=', 'favorites.article_id')
-        ->join('shops', 'shops.id', '=', 'articles.shop_id')
-        ->get();
+        $userFavs = Favorite::where('user_id', Auth::user()->id)->pluck('article_id')->toArray();
+        $articles = Article::whereIn('id', $userFavs)->get();
 
         return view('pages.favorites', compact('articles'));
     }

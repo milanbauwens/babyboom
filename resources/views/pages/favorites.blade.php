@@ -18,7 +18,7 @@
                 @if (count($articles) === 0)
                     <div class="favorites__container">
                         <img class="favorites__img" src="{{asset('images/favorites.svg')}}" alt="">
-                        <h1 class="favorites__title"> You have no favorite items.. </h1>
+                        <p class="favorites__title"> You have no favorite items.. </p>
                     </div>
                 @else
                     <div class="content__inner--grid">

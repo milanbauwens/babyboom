@@ -26,24 +26,24 @@
                 @endif
 
                 <article class="detail">
-                    <img class="detail__img"  src="{{asset('storage/' . $image->path)}}" alt="">
+                    <img class="detail__img"  src="{{asset('storage/' . $article->image->path)}}" alt="">
 
                     <article class="detail__container">
                         <div class="detail__inner">
-                            <h2 class="detail__category">{{$category->name}}</h2>
+                            <h2 class="detail__category">{{$article->category->name}}</h2>
                             <h1 class="detail__title">{{$article->name}}</h1>
                             <h4 class="detail__price">{{'€ ' . $article->price}}</h4>
                         </div>
 
                         <div class="detail__inner">
                             <h3 class="detail__subtitle">Shop</h3>
-                            <a class="detail__shop--link" href="{{$shop->url}}" target="_blank">
-                                @if ($shop->name ==='Bollebuik')
-                                    <img class="detail__shop" src="{{asset('storage/logos/bollebuik-logo.jpeg')}}" alt="Logo of {{$article->name}}">
-                                @elseif ($shop->name === 'Mimi Baby')
-                                    <img class="detail__shop" src="{{asset('storage/logos/mimi-baby-logo.jpeg')}}" alt="Logo of {{$article->name}}">
-                                @elseif ($shop->name === 'May Mays')
-                                    <img class="detail__shop" src="{{ asset('storage/logos/may-mays-logo.png')}}" alt="Logo of {{$article->name}}">
+                            <a class="detail__shop--link" href="{{$article->shop->url}}" target="_blank">
+                                @if ($article->shop->name ==='Bollebuik')
+                                    <img class="detail__shop" src="{{asset('storage/logos/bollebuik-logo.jpeg')}}" alt="Logo of {{$article->shop->name}}">
+                                @elseif ($article->shop->name === 'Mimi Baby')
+                                    <img class="detail__shop" src="{{asset('storage/logos/mimi-baby-logo.jpeg')}}" alt="Logo of {{$article->shop->name}}">
+                                @elseif ($article->shop->name === 'May Mays')
+                                    <img class="detail__shop" src="{{ asset('storage/logos/may-mays-logo.png')}}" alt="Logo of {{$article->shop->name}}">
                                 @endif
                             </a>
                         </div>
@@ -63,7 +63,7 @@
                         </div>
 
                         <div class="detail__inner">
-                            <a href="{{route('wishlists.addProduct', ['article_id' => $article->id])}}" class="button__submit">Add to wishlist <i style="margin-left: 5px" class="bi bi-plus-lg "></i></a>
+                            <a href="{{route('wishlists.add-product', ['article_id' => $article->id])}}" class="button__submit">Add to wishlist <i style="margin-left: 5px" class="bi bi-plus-lg "></i></a>
                             @if ($favorite)
                                 <a href="{{route('favorites.delete', ['favorite_id' => $favorite->id, 'article_id' => $article->id])}}" class="button__register">Remove from favorites <i style="margin-left: 5px" class="bi bi-heart-fill "></i></a>
                             @else

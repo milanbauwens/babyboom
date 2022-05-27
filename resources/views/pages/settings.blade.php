@@ -74,6 +74,12 @@
                             </x-responsive-nav-link>
                         </form>
                 </div>
+
+                <div class="settings__container--bottom">
+                    @if (auth()->user()->role)
+                        <a class="button__delete" href="{{route('admin.dashboard')}}">Admin Dashboard</a>
+                    @endif
+                </div>
             </div>
         </section>
     </main>

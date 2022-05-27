@@ -9,7 +9,7 @@ class Article extends Model
 {
     use HasFactory;
 
-    public function wishlists()
+    public function Wishlist()
     {
         return $this->belongsToMany(Wishlist::class);
     }
@@ -24,5 +24,13 @@ class Article extends Model
 
     public function Category() {
         return $this->belongsTo(Category::class);
+    }
+
+    public function Favorites() {
+        return $this->belongsTo(Favorite::class);
+    }
+
+    public function ArticleWishlists() {
+        return $this->belongsToMany(ArticleWishlist::class);
     }
 }

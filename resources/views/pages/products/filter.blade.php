@@ -19,14 +19,13 @@
                     <a class="button__back" href="{{url()->previous()}}"><i class="bi bi-x-lg button__add--inner"></i></a>
                 </div>
 
-                    @if ($errors->any())
-                        <div>
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
+                   {{-- Display errors to user --}}
+                   @if($errors->any())
+                        @foreach ($errors->all() as $error )
+                        <div class='content__error'>
+                                <p>{{$error}}</p>
                         </div>
+                        @endforeach
                     @endif
 
                 <form class="filter" action="{{route('products.filters')}}">

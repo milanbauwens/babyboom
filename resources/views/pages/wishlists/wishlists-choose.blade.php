@@ -32,7 +32,7 @@
                             @endif
 
 
-                            <form class="content__container" action="{{route('wishlists.storeProduct')}}" method="POST">
+                            <form class="content__container" action="{{route('wishlists.store-product')}}" method="POST">
                                 @csrf
                                 @foreach ($wishlists as $wishlist )
                                     <input class="wishlist__input--checkbox" type="checkbox" name="{{'wishlists[' . $wishlist->id . ']'}}" id="{{$wishlist->id}}" value="{{$wishlist->id}}">

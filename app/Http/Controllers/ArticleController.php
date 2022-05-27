@@ -11,11 +11,9 @@ use Illuminate\Http\Request;
 
 class ArticleController extends Controller{
     public function show(){
-        // models goedzetten
         $articles = Article::orderBy('id', 'asc')
                             ->paginate(30)
                             ->withQueryString();
-
 
         return view('pages.products.products', [
             'articles' => $articles,
@@ -24,10 +22,8 @@ class ArticleController extends Controller{
 
     public function showProductDetail($id){
         $user=auth()->user();
+
         $article = Article::where('id', $id)->firstOrFail();
-        $category = Category::where('id', $article->category_id)->firstOrFail();
-        $image = Image::where('article_id', $id)->firstOrFail();
-        $shop = Shop::where('id', $article->shop_id)->firstOrFail();
 
 
         $favorite = Favorite::where([
@@ -37,16 +33,14 @@ class ArticleController extends Controller{
 
         return view('pages.products.detail', [
             'article' => $article,
-            'image' => $image,
-            'category' => $category,
-            'shop' => $shop,
             'favorite' => $favorite
         ]);
     }
 
-    public function articlesByShop($shop_id){
-        $articles = Article::where('shop_id', $shop_id)
-        ->orderBy('images.id', 'asc')
+    public function articlesByShop($shop){
+        $chosenShop = Shop::where('name', $shop)->first();
+        $articles = Article::where('shop_id', $chosenShop->id)
+        ->orderBy('id', 'asc')
         ->paginate(30)
         ->withQueryString();
 

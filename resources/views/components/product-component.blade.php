@@ -1,38 +1,33 @@
-
- @if (str_contains(Request::path(), 'wishlists/detail'))
-    <div class="product">
-        <a href="{{route('products.detail', ['id' => $article->article_id])}}"><img class="product__img" loading="lazy" src="{{asset('storage/' . $article->path)}}" alt="{{$article->alt}}"></a>
-        <div class="product__inner">
-            <a class="product__link" href="{{route('products.detail', ['id' => $article->article_id])}}"><h3 class="product__title">{{Str::limit($article->alt, 20, '...')}}</h3></a>
-            @if ($article->name ==='Bollebuik')
-                <img class="product__shop" src="{{asset('storage/logos/bollebuik-logo.jpeg')}}" alt="Logo of {{$article->name}}">
-            @elseif ($article->name === 'Mimi Baby')
-                <img class="product__shop" src="{{asset('storage/logos/mimi-baby-logo.jpeg')}}" alt="Logo of {{$article->name}}">
-            @elseif ($article->name === 'May Mays')
-                <img class="product__shop" src="{{ asset('storage/logos/may-mays-logo.png')}}" alt="Logo of {{$article->name}}">
+<div class="product">
+    <a href="{{route('products.detail', ['id' => $article->id])}}"><img class="product__img" loading="lazy" src="{{asset('storage/' . $article->image->path)}}" alt="{{$article->image->alt}}"></a>
+    <div class="product__inner">
+        <a class="product__link" href="{{route('products.detail', ['id' => $article->id])}}"><h3 class="product__title">{{Str::limit($article->image->alt, 20, '...')}}</h3></a>
+        @if ($article->shop->name ==='Bollebuik')
+            <img class="product__shop" src="{{asset('storage/logos/bollebuik-logo.jpeg')}}" alt="Logo of {{$article->shop->name }}">
+        @elseif ($article->shop->name === 'Mimi Baby')
+            <img class="product__shop" src="{{asset('storage/logos/mimi-baby-logo.jpeg')}}" alt="Logo of {{$article->shop->name }}">
+        @elseif ($article->shop->name === 'May Mays')
+            <img class="product__shop" src="{{ asset('storage/logos/may-mays-logo.png')}}" alt="Logo of {{$article->shop->name }}">
+        @endif
+        <div class="product__inner--flex">
+            <h4 class="product__price">{{'€ ' . number_format($article->price,2,',')}}</h4>
+            @if (str_contains(Request::path(), 'wishlists/detail'))
+                <a class="product__action" href="{{route('wishlists.delete-product', ['article_id' => $article->id])}}" ><i class="bi bi-trash"></i></a>
+            @elseif (str_contains(Request::path(), 'wishlist'))
+                <form method='POST'>
+                    @csrf
+                    <input type="hidden" name="article_id" value="{{$article->id}}">
+                    <button class="product__action" type="submit" ><i class="bi bi-basket "></i></button>
+                </form>
+            @elseif(str_contains(Request::path(), 'basket'))
+                <form method='POST' action="{{route('guest.removeFromBasket', ['slug' => Route::input('slug')])}}">
+                    @csrf
+                    <input type="hidden" name="article_id" value="{{$article->id}}">
+                    <button class="product__action" type="submit" ><i class="bi bi-trash "></i></button>
+                </form>
+            @else
+                <a class="product__action" href="{{route('wishlists.add-product', ['article_id' => $article->id])}}" ><i class="bi bi-plus-lg "></i></a>
             @endif
-            <div class="product__inner--flex">
-                <h4 class="product__price">{{'€ ' . ($article->price)}}</h4>
-                <a class="product__action" onclick="window.location='{{route('wishlists.delete', ['wishlist_id' => $wishlist->id])}}'" ><i class="bi bi-trash "></i></a>
-            </div>
         </div>
     </div>
- @else
-    <div class="product">
-        <a href="{{route('products.detail', ['id' => $article->id])}}"><img class="product__img" loading="lazy" src="{{asset('storage/' . $article->image->path)}}" alt="{{$article->image->alt}}"></a>
-        <div class="product__inner">
-            <a class="product__link" href="{{route('products.detail', ['id' => $article->id])}}"><h3 class="product__title">{{Str::limit($article->image->alt, 20, '...')}}</h3></a>
-            @if ($article->category->name ==='Bollebuik')
-                <img class="product__shop" src="{{asset('storage/logos/bollebuik-logo.jpeg')}}" alt="Logo of {{$article->category->name }}">
-            @elseif ($article->category->name === 'Mimi Baby')
-                <img class="product__shop" src="{{asset('storage/logos/mimi-baby-logo.jpeg')}}" alt="Logo of {{$article->category->name }}">
-            @elseif ($article->category->name === 'May Mays')
-                <img class="product__shop" src="{{ asset('storage/logos/may-mays-logo.png')}}" alt="Logo of {{$article->category->name }}">
-            @endif
-            <div class="product__inner--flex">
-                <h4 class="product__price">{{'€ ' . ($article->price)}}</h4>
-                <a class="product__action" onclick="window.location='{{route('wishlists.addProduct', ['article_id' => $article->id])}}'" ><i class="bi bi-plus-lg "></i></a>
-            </div>
-        </div>
-    </div>
-@endif
+</div>

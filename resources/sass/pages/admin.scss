@@ -1,0 +1,70 @@
+@use "sass:map";
+@use "../abstracts/variables.scss" as v;
+
+.admin {
+
+    &__card {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 15px;
+        background-color: map-get(v.$colors, blue-gray);
+        box-shadow: 0 2px 10px 0 #c8c8c87a;
+        height: 400px;
+        text-decoration: none;
+        margin-bottom: 50px;
+    }
+
+    &__title {
+        background-color: map-get(v.$colors, blue-900);
+        color: white;
+        padding: 15px;
+        border-radius: 15px;
+        font-size: 20px;
+        font-family: v.$font-exo;
+        font-weight: 500;
+        text-align: center;
+    }
+
+    &__table{
+
+        background-color: white;
+        width: 100%;
+        border-radius: 15px;
+        padding: 10px;
+
+        &--row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        &--cell{
+            padding: 10px;
+            font-size: 15px;
+            color: map-get(v.$colors,black-800);
+            font-family: v.$font-raleway;
+        }
+
+        &--button{
+            padding: 10px 15px;
+            background-color: map-get(v.$colors, blue-900);
+            color: white;
+            border-radius: 15px;
+            border: none;
+            font-family: v.$font-raleway;
+            box-shadow: 0 2px 10px 0 #c8c8c87a;
+            text-decoration: none;
+            text-align: center;
+            cursor: pointer;
+        }
+    }
+
+    &__label {
+        font-size: 15px;
+        color: map-get(v.$colors,black-800);
+        font-family: v.$font-raleway;
+        margin-bottom: 10px;
+    }
+}

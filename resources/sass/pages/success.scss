@@ -1,0 +1,36 @@
+@use "sass:map";
+@use "../abstracts/variables.scss" as v;
+
+.success
+{
+
+    &__img{
+        margin: 0 auto;
+        width: 200px;
+        margin-bottom: 20px;
+    }
+
+    &__title{
+        text-align: center;
+        font-family: v.$font-exo;
+        font-size: 30px;
+        color: map-get(v.$colors, black-800 );
+    }
+
+    &__subtitle {
+        text-align: center;
+        font-family: v.$font-exo;
+        font-weight: 500;
+        font-size: 20px;
+        color: map-get(v.$colors, black-800 );
+        margin-bottom: 20px;
+    }
+
+    &__container {
+        margin-bottom: 50px;
+
+        &--top{
+            margin-top: 50px;
+        }
+    }
+}

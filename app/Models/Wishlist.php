@@ -9,8 +9,13 @@ class Wishlist extends Model
 {
     use HasFactory;
 
-    public function articles()
+    public function Articles()
     {
-        return $this->belongsToMany(Article::class);
+        return $this->hasMany(Article::class);
+    }
+
+    public function User()
+    {
+        return $this->belongsTo(User::class);
     }
 }

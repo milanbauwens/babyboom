@@ -47,6 +47,14 @@
         font-weight: 300;
         color: map.get(v.$colors, black-800);
         margin-bottom: 45px;
+
+        &--guest {
+            font-family: v.$font-exo;
+            font-size: 15;
+            font-weight: 300;
+            color: map.get(v.$colors, black-800);
+            margin-bottom: 20px;
+        }
     }
 
     &__img {

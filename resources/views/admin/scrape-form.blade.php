@@ -1,85 +1,99 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Admin - Scraper</title>
-</head>
-<body>
-    <h1>Scrape products</h1>
+@extends('layouts.app')
 
-    <form action="{{route('scrape.categories')}}" method="POST">
-        @csrf
-        <div class="div">
-            <label for="shop">Webshop</label>
-            <select name="shop" id="shop" >
-                @foreach ($shops as $key => $shop)
-                    <option value="{{$key}}">{{$shop}}</option>
-                @endforeach
-            </select>
-        </div>
-        <div class="div">
-            <label for="url">Url collection</label>
-            <input type="url" required name="url" id="id" placeholder="e.g. http://bol.com/speelgoed">
-        </div>
-        <div class="div">
-            <button type="submit">Scrape categories</button>
-        </div>
-    </form>
+@section('content')
+    <x-navigation />
 
-    <h2>May Mays Categories</h2>
+    <main>
+        <section class="content">
+            <article class="content__container">
+                <div class="content__inner--bottom">
+                    <a class="button__back" href="{{route('admin.dashboard')}}"><i class="bi bi-arrow-left button__add--inner"></i></a>
+                </div>
+                <h1 class="content__subtitle">Scrape products</h1>
 
-    <table>
-        @foreach ($maymaysCategories as $maymaysCategory )
-            <tr>
-                <td>{{$maymaysCategory->name}}</td>
-                <td>
-                    <form action="{{ route('scrape.articles') }}" method="POST">
-                        @csrf
-                        <input type="hidden" name="url" value="{{$maymaysCategory->url}}">
-                        <input type="hidden" name="shop" value="maymays">
-                        <button type="submit">Scrape all articles</button>
-                    </form>
-                </td>
-            </tr>
-        @endforeach
-    </table>
+                <form class="admin__form" action="{{route('scrape.categories')}}" method="POST">
+                    @csrf
+                    <div class="div">
+                        <label class="admin__label" for="shop">Webshop</label>
+                        <select class="form__input" name="shop" id="shop" >
+                            @foreach ($shops as $key => $shop)
+                                <option value="{{$key}}">{{$shop}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="div">
+                        <label class="admin__label" for="url">Url collection</label>
+                        <input type="url" style="background-image:url('{{ asset('images/link.svg')}}')" class="form__input" required name="url" id="id" placeholder="e.g. http://bol.com/speelgoed">
+                    </div>
+                    <div class="div">
+                        <button class="button__submit" type="submit">Scrape categories</button>
+                    </div>
+                </form>
 
-    <h2>Mimi Baby Categories</h2>
 
-    <table>
-            @foreach ($mimibabyCategories as $mimibabyCategory )
-                <tr>
-                    <td>{{$mimibabyCategory->name}}</td>
-                    <td>
-                        <form action="{{ route('scrape.articles') }}" method="POST">
-                            @csrf
-                            <input type="hidden" name="url" value="{{$mimibabyCategory->url}}">
-                            <input type="hidden" name="shop" value="mimibaby">
-                            <button type="submit">Scrape all articles</button>
-                        </form>
-                    </td>
-                </tr>
-            @endforeach
-    </table>
+                <article class="content__container">
+                    <div class="content__inner">
+                        <h2 class="content__subtitle">May Mays Categories</h2>
+                    </div>
+                    <table class="admin__table">
+                            @foreach ($maymaysCategories as $maymaysCategory )
+                                <tr class="admin__table--row">
+                                    <td class="admin__table--cell">{{$maymaysCategory->name}}</td>
+                                    <td>
+                                        <form action="{{ route('scrape.articles') }}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="url" value="{{$maymaysCategory->url}}">
+                                            <input type="hidden" name="shop" value="maymays">
+                                            <button class="admin__table--button" type="submit">Scrape all articles</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                    </table>
+                </article>
 
-    <h2>Bollebuik Categories</h2>
+                <article class="content__container">
+                    <div class="content__inner">
+                        <h2 class="content__subtitle">Mimi Baby Categories</h2>
+                    </div>
+                    <table class="admin__table">
+                            @foreach ($mimibabyCategories as $mimibabyCategory )
+                                <tr class="admin__table--row">
+                                    <td class="admin__table--cell">{{$mimibabyCategory->name}}</td>
+                                    <td>
+                                        <form action="{{ route('scrape.articles') }}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="url" value="{{$mimibabyCategory->url}}">
+                                            <input type="hidden" name="shop" value="mimibaby">
+                                            <button class="admin__table--button" type="submit">Scrape all articles</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                    </table>
+                </article>
 
-    <table>
-            @foreach ($bollebuikCategories as $bollebuikCategory )
-                <tr>
-                    <td>{{$bollebuikCategory->name}}</td>
-                    <td>
-                        <form action="{{ route('scrape.articles') }}" method="POST">
-                            @csrf
-                            <input type="hidden" name="url" value="{{$bollebuikCategory->url}}">
-                            <input type="hidden" name="shop" value="bollebuik">
-                            <button type="submit">Scrape all articles</button>
-                        </form>
-                    </td>
-                </tr>
-            @endforeach
-    </table>
-</body>
-</html>
+                <article class="content__container">
+                    <div class="content__inner">
+                        <h2 class="content__subtitle">Bollebuik Categories</h2>
+                    </div>
+                    <table class="admin__table">
+                            @foreach ($bollebuikCategories as $bollebuikCategory )
+                                <tr class="admin__table--row">
+                                    <td class="admin__table--cell">{{$bollebuikCategory->name}}</td>
+                                    <td>
+                                        <form action="{{ route('scrape.articles') }}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="url" value="{{$bollebuikCategory->url}}">
+                                            <input type="hidden" name="shop" value="bollebuik">
+                                            <button class="admin__table--button" type="submit">Scrape all articles</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                    </table>
+                </article>
+            </article>
+        </section>
+</main>
+@endsection

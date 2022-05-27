@@ -59,6 +59,7 @@
         font-size: 15px;
         font-family: v.$font-exo;
         font-weight: 400;
+        overflow-wrap: break-word;
     }
 
     &__identifier{
@@ -84,6 +85,8 @@
         font-family: v.$font-exo;
         font-weight: 400;
     }
+
+
 
     &__title {
 

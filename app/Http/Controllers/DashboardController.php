@@ -13,7 +13,6 @@ class DashboardController extends Controller
         $user = auth()->user();
         $wishlists = Wishlist::where('user_id', $user->id)->get();
 
-
         return view('pages.dashboard', [
             'shops' => $shops,
             'wishlists' => $wishlists

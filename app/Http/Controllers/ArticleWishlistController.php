@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
 use App\Models\ArticleWishlist;
 use App\Models\Wishlist;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ArticleWishlistController extends Controller
 {
@@ -29,7 +31,7 @@ class ArticleWishlistController extends Controller
             ->first();
 
             if($checkifExists) {
-                return redirect()->route('wishlists.addProduct', ['article_id' => $r->article_id])->with('error', 'Product already in one of the wishlists!');
+                return redirect()->route('wishlists.add-product', ['article_id' => $r->article_id])->with('error', 'Product already in one of the wishlists!');
             } else {
                 $wishlistArticleEntity = new ArticleWishlist();
                 $wishlistArticleEntity->wishlist_id = $wishlist;
@@ -44,16 +46,32 @@ class ArticleWishlistController extends Controller
         //get wishlists by id from current user
         $wishlist = Wishlist::where('id', $wishlist_id)->first();
 
-        $articles = ArticleWishlist::where('wishlist_id', $wishlist_id)
-        ->join('articles', 'article_wishlists.article_id', '=', 'articles.id')
-        ->join('images', 'images.article_id', '=', 'articles.id')
-        ->join('shops', 'shops.id', '=', 'articles.shop_id')
-        ->get();
+        $wishlistItems = ArticleWishlist::where('wishlist_id', $wishlist_id)->pluck('article_id')->toArray();
+        $articles = Article::whereIn('id', $wishlistItems)->get();
 
         return view('pages.wishlists.detail', compact('wishlist'), compact('articles'));
     }
 
-    public function delete($id){
-        dd($id);
+    public function deleteProductFromWishlist($id){
+        $url = explode('/', url()->previous());
+        $wishlist_id = end($url);
+        $articlewishlist = ArticleWishlist::where('article_id', $id)->where('wishlist_id', $wishlist_id)->firstOrFail();
+
+        $articlewishlist->delete();
+
+        return redirect()->back()->with('status', 'Product removed from wishlist');
+    }
+
+    public function deleteWishlist($id){
+        $articlewishlists = ArticleWishlist::where('wishlist_id', $id)->get();
+        foreach ($articlewishlists as $item) {
+            $item->delete();
+        }
+
+        $wishlist = Wishlist::find($id, 'id');
+        $wishlist->delete();
+
+
+        return redirect()->route('wishlists')->with('status', 'Wishlist was deleted');
     }
 }
