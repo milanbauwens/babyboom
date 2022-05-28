@@ -24,13 +24,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function(){
-    return redirect()->route('landing');
-});
-
 Route::get('/welcome', function () {
     return view('pages.landingpage');
-})->middleware(['guest'])->name('landing');
+})->name('landing');
 
 Route::get('/dashboard', [DashboardController::class, 'show'])->middleware(['auth'])->name('dashboard');
 
