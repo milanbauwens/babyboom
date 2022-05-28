@@ -1,7 +1,8 @@
+
 <div class="product">
     <a href="{{route('products.detail', ['id' => $article->id])}}"><img class="product__img" loading="lazy" src="{{asset('storage/' . $article->image->path)}}" alt="{{$article->image->alt}}"></a>
     <div class="product__inner">
-        <a class="product__link" href="{{route('products.detail', ['id' => $article->id])}}"><h3 class="product__title">{{Str::limit($article->image->alt, 20, '...')}}</h3></a>
+        <a class="product__link" href="{{route('products.detail', ['id' => $article->id])}}"><h3 class="product__title">{{Illuminate\Support\Str::limit($article->image->alt, 20, '...')}}</h3></a>
         @if ($article->shop->name ==='Bollebuik')
             <img class="product__shop" src="{{asset('storage/logos/bollebuik-logo.jpeg')}}" alt="Logo of {{$article->shop->name }}">
         @elseif ($article->shop->name === 'Mimi Baby')
