@@ -10,6 +10,10 @@
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
+        {{-- Icons --}}
+        <link rel="apple-touch-icon" href="{{url('192x192.png')}}" />
+        <link rel="manifest" href="{{url('mix-manifest.json')}}" />
+
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
