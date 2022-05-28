@@ -106,19 +106,23 @@ class ArticleController extends Controller{
         }
     }
 
-    // public function search(Request $request){
-    //     // Get the search value from the request
-    //     $search = $request->input('search');
+    public function search(Request $request){
+        // Get the search value from the request
+        $request->validate([
+            'search' => 'string|max:255'
+        ]);
 
-    //     // Search in the title and body columns from the posts table
-    //     $posts = Article::query()
-    //         ->where('title', 'LIKE', "%{$search}%")
-    //         ->orWhere('body', 'LIKE', "%{$search}%")
-    //         ->get();
+        $search = $request->search;
 
-    //     // Return the search view with the resluts compacted
-    //     return view('search', compact('posts'));
-    // }
+        // Search in the title and body columns from the posts table
+        $articles = Article::query()
+            ->where('name', 'LIKE', "%{$search}%")
+            ->paginate(30);
+
+        return view('pages.products.products', [
+        'articles' => $articles
+        ]);
+    }
 
     private function queryBuilder($minPrice = 0, $maxPrice = 1000, $shops, $categories){
         if($shops){

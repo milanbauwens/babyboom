@@ -6,8 +6,8 @@
     <main>
         <header class="header--small">
             <div class="header__inner">
-                <form action="">
-                    <input style="background-image: url('{{ asset('images/search.svg')}}')" class="header__search" value="" type="text" placeholder="Search products" name="search" id="search">
+                <form action="{{route('products.search')}}">
+                    <input style="background-image: url('{{ asset('images/search.svg')}}')" class="header__search" value="{{old('search')}}" type="text" placeholder="Search products" name="search" id="search">
                 </form>
             </div>
         </header>
@@ -34,7 +34,7 @@
                     <div class="filter__container--flex">
                         @foreach ($categories as $category )
                             <div class="filter__input">
-                                <input class="filter__input--checkbox" type="checkbox" name="{{'categories[' . $category->name . ']'}}" id="{{$category->name . $category->id}}"></input>
+                                <input class="filter__input--checkbox" type="checkbox" name="{{'categories[' . $category->id . ']'}}" id="{{$category->name . $category->id}}"></input>
                                 <label class="filter__label--checkbox" for="{{$category->name . $category->id}}">{{$category->name}}</label>
                             </div>
                         @endforeach
@@ -53,7 +53,7 @@
                     <div class="filter__container--flex">
                         @foreach ($shops as $shop )
                             <div class="filter__input">
-                                <input class="filter__input--checkbox" type="checkbox" name="{{'shops[' . $shop->name . ']'}}" id="{{$shop->name . $shop->id}}"></input>
+                                <input class="filter__input--checkbox" type="checkbox" name="{{'shops[' . $shop->id . ']'}}" id="{{$shop->name . $shop->id}}"></input>
                                 <label class="filter__label--checkbox" for="{{$shop->name . $shop->id}}">{{$shop->name}}</label>
                             </div>
                         @endforeach

@@ -25,6 +25,12 @@
                     <input type="hidden" name="article_id" value="{{$article->id}}">
                     <button class="product__action" type="submit" ><i class="bi bi-trash "></i></button>
                 </form>
+            @elseif (str_contains(Request::path(), 'admin'))
+                <form method='POST'>
+                    @csrf
+                    <input type="hidden" name="article_id" value="{{$article->id}}">
+                    <button class="product__action" type="submit" ><i class="bi bi-trash "></i></button>
+                </form>
             @else
                 <a class="product__action" href="{{route('wishlists.add-product', ['article_id' => $article->id])}}" ><i class="bi bi-plus-lg "></i></a>
             @endif

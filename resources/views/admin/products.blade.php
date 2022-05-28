@@ -6,8 +6,8 @@
     <main>
         <header class="header--small">
             <div class="header__inner">
-                <form action="{{route('products.search')}}">
-                    <input style="background-image: url('{{ asset('images/search.svg')}}')" class="header__search" value="{{old('search')}}" type="text" placeholder="Search products" name="search" id="search">
+                <form action="">
+                    <input style="background-image: url('{{ asset('images/search.svg')}}')" class="header__search" value="" type="text" placeholder="Search products" name="search" id="search">
                 </form>
             </div>
         </header>
@@ -15,8 +15,14 @@
             <article class="content__container">
                 <div class="content__inner--flex">
                     <h2 class="content__subtitle">Products</h2>
-                    <a href="{{route('products.filters')}}" class="button__filter"><i class="bi bi-funnel-fill button__filter--inner"></i>Filters</a>
                 </div>
+
+                @if(session()->has('status'))
+                    <div class='content__status'>
+                        {{session('status')}}
+                    </div>
+                @endif
+
                 <div class="content__inner--grid">
                     @foreach ($articles as $article)
                         @include('components.product-component')

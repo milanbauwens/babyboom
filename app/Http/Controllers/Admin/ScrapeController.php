@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\Controller;
 use App\Models\Article;
+use App\Models\ArticleWishlist;
 use App\Models\Category;
+use App\Models\Favorite;
 use App\Models\Image;
 use App\Models\Shop;
 use Goutte\Client;
@@ -21,6 +24,33 @@ class ScrapeController extends Controller
 
     public function showDashboard(){
         return view('admin.dashboard');
+    }
+
+    public function deleteProduct(Request $r){
+        $article = Article::findOrFail($r->article_id);
+        $articleWishlist = ArticleWishlist::where('article_id', $r->article_id)->get();
+
+        if($articleWishlist){
+            foreach ($articleWishlist as $item) {
+               $item->delete();
+            }
+        }
+
+        $article->Image->delete();
+        if($article->Favorites) $article->Favorites->delete();
+        $article->delete();
+
+        return redirect()->back()->with('status', 'Product was deleted from database');
+    }
+
+    public function showProducts(){
+        $articles = Article::orderBy('id', 'asc')
+        ->paginate(30)
+        ->withQueryString();
+
+        return view('admin.products', [
+        'articles' => $articles,
+        ]);
     }
 
     public function show() {

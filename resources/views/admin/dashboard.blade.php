@@ -17,8 +17,8 @@
                         </a>
                     </article>
                     <article class="admin__inner">
-                        <a class="admin__card" href="{{route('scrape')}}">
-                            <h1 class="admin__title">Delete Products</h1>
+                        <a class="admin__card" href="{{route('admin.products')}}">
+                            <h1 class="admin__title">All products</h1>
                         </a>
                     </article>
                 </div>

@@ -35,6 +35,7 @@ Route::prefix('products')->middleware('auth')->name('products')->group(
         // Show the products page
         Route::get('/', [ArticleController::class, 'show']);
         Route::get('/filter', [ArticleController::class, 'articlesByFilters'])->name('.filters');
+        Route::get('/search', [ArticleController::class, 'search'])->name('.search');
         Route::get('/detail/{id}', [ArticleController::class, 'showProductDetail'])->name('.detail');
         Route::get('/{shop}', [ArticleController::class, 'articlesByShop'])->name('.byShop');
     }
@@ -98,5 +99,7 @@ Route::get('admin', [ScrapeController::class, 'showDashboard'])->middleware('aut
 Route::get('admin/scrape', [ScrapeController::class, 'show'])->middleware('auth')->name('scrape');
 Route::post('admin/scrape/categories', [ScrapeController::class, 'scrapeCategories'])->middleware('auth')->name('scrape.categories');
 Route::post('admin/scrape/articles', [ScrapeController::class, 'scrapeArticles'])->middleware('auth')->name('scrape.articles');
+Route::get('admin/products', [ScrapeController::class, 'showProducts'])->name('admin.products');
+Route::post('admin/products', [ScrapeController::class, 'deleteProduct'])->name('admin.delete-product');
 
 require __DIR__.'/auth.php';
