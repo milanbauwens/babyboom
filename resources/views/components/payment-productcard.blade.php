@@ -1,7 +1,7 @@
 <div class="product">
     <img class="product__img" loading="lazy" src="{{asset('storage/' . $article->image->path)}}" alt="{{$article->image->alt}}"></a>
     <div class="product__inner">
-        <h3 class="product__title">{{$article->name}}</h3></a>
+        <h3 class="product__title">{{substr($article->name, 0, 20) . '...'}}</h3></a>
         @if ($article->shop->name ==='Bollebuik')
             <img class="product__shop" src="{{asset('storage/logos/bollebuik-logo.jpeg')}}" alt="Logo of {{$article->shop->name }}">
         @elseif ($article->shop->name === 'Mimi Baby')
