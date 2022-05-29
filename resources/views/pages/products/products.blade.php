@@ -15,7 +15,7 @@
             <article class="content__container">
                 <div class="content__inner--flex">
                     <h2 class="content__subtitle">Products</h2>
-                    <a href="{{route('products.filters')}}" class="button__filter"><i class="bi bi-funnel-fill button__filter--inner"></i>Filters</a>
+                    {{-- <a href="{{route('products.filters')}}" class="button__filter"><i class="bi bi-funnel-fill button__filter--inner"></i>Filters</a> --}}
                 </div>
                 <div class="content__inner--grid">
                     @foreach ($articles as $article)

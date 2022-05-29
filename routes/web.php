@@ -37,7 +37,7 @@ Route::prefix('products')->middleware('auth')->name('products')->group(
     function(){
         // Show the products page
         Route::get('/', [ArticleController::class, 'show']);
-        Route::get('/filter', [ArticleController::class, 'articlesByFilters'])->name('.filters');
+        // Route::get('/filter', [ArticleController::class, 'articlesByFilters'])->name('.filters');
         Route::get('/search', [ArticleController::class, 'search'])->name('.search');
         Route::get('/detail/{id}', [ArticleController::class, 'showProductDetail'])->name('.detail');
         Route::get('/{shop}', [ArticleController::class, 'articlesByShop'])->name('.byShop');
