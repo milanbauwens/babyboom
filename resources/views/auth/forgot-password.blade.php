@@ -29,7 +29,7 @@
                 </div>
 
                     <button type="submit" class="auth__submit">
-                        {{ __("Reset Password") }}
+                        {{ ucfirst(__("send mail")) }}
                     </button>
             </form>
             <a href="{{route('login')}}" class="button__delete--blue">{{ucfirst(__("Cancel"))}}</a>
