@@ -49,7 +49,7 @@
 
         &--blue{
             @extend .button__delete;
-            color:map.get(v.$colors, blue-900) ;
+            color:map.get(v.$colors, black-800) ;
             margin-top: 10px;
             margin-bottom: 10px;
         }
