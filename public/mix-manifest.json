@@ -1,27 +1,4 @@
 {
-    "short_name": "Babyboom",
-    "name": "Babyboom",
-    "icons": [
-      {
-        "src": "favicon.ico",
-        "sizes": "64x64 32x32 24x24 16x16",
-        "type": "image/x-icon"
-      },
-      {
-        "src": "192x192.png",
-        "type": "image/png",
-        "sizes": "192x192"
-      },
-      {
-        "src": "512x512.png",
-        "type": "image/png",
-        "sizes": "512x512"
-      }
-    ],
-    "start_url": ".",
-    "display": "standalone",
-    "theme_color": "#000000",
-    "background_color": "#ffffff",
     "/js/app.js": "/js/app.js?id=13a4775b6b2382b29e31319093d45019",
-    "/css/app.css": "/css/app.css?id=71c1ceeeb5655f8be52b09e4d9ea43e3"
+    "/css/app.css": "/css/app.css?id=6da1d3567fae29e998643d54d52f8838"
 }

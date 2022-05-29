@@ -17,20 +17,22 @@
             <!-- Validation Errors -->
             <x-auth-validation-errors class="auth__error" :errors="$errors" />
 
+
             <form method="POST" action="{{ route('password.email') }}">
                 @csrf
 
                 <!-- Email Address -->
                 <div>
-                    <x-label class='form__label--block' for="email" :value="__('Email')" />
+                    <label class='form__label--block' for="email">{{ucfirst(__('email'))}}</label>
 
                     <x-input style="background-image:url('{{ asset('images/envelope-fill.svg')}}')" id="email" class="form__input" type="email" name="email" :value="old('email')" required autofocus />
                 </div>
 
                     <button type="submit" class="auth__submit">
-                        {{ __('Reset password') }}
+                        {{ __("Reset Password") }}
                     </button>
             </form>
+            <a href="{{route('login')}}" class="button__delete--blue">{{ucfirst(__("Cancel"))}}</a>
             <img class="auth__illu" src="images/child.png" alt="illustration of a baby and a toy - babyboom">
         </div>
     </div>

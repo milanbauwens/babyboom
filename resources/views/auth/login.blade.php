@@ -6,8 +6,8 @@
 
 
             <div class="auth__inner">
-                <h1 class="auth__title">Welcome Back</h1>
-                <p class="auth__subtitle">Log in to your account</p>
+                <h1 class="auth__title">{{ucfirst(__('welcome Back'))}}</h1>
+                <p class="auth__subtitle">{{ucfirst(__('log in to your account'))}}</p>
             </div>
 
             <!-- Session Status -->
@@ -23,14 +23,14 @@
 
                 <!-- Email Address -->
                 <div>
-                    <x-label  class="form__label--block" for="email" :value="__('Email')" />
+                    <label  class="form__label--block" for="email">{{ucfirst(__('email'))}}</label>
 
                     <x-input style="background-image:url('{{ asset('images/envelope-fill.svg')}}')" class="form__input"  id="email"  type="email" name="email" :value="old('email')" required />
                 </div>
 
                 <!-- Password -->
                 <div>
-                    <x-label  class="form__label--block" for="password" :value="__('Password')" />
+                    <label  class="form__label--block" for="password">{{ucfirst(__('password'))}}</label>
 
                     <x-input  style="background-image:url('{{ asset('images/lock-fill.svg')}}')" class="form__input" id="password"
                                     type="password"
@@ -39,7 +39,7 @@
                     <div>
                         @if (Route::has('password.request'))
                             <a class="auth__subtitle--bold right" href="{{ route('password.request') }}">
-                                Forgot password?
+                                {{ucfirst(__('forgot password?'))}}
                             </a>
                         @endif
                     </div>
@@ -50,7 +50,7 @@
                     </button>
 
             </form>
-            <p class="auth__subtitle">Don't have an account?<a class="auth__subtitle--bold" href="{{route('register')}}"> Sign up</a></p>
+            <p class="auth__subtitle">{{ucfirst(__("don't have an account?"))}}<a class="auth__subtitle--bold" href="{{route('register')}}"> {{ucfirst(__("Register"))}}</a></p>
 
             <img class="auth__illu" src="images/child.png" alt="illustration of a baby and a toy - babyboom">
         </div>

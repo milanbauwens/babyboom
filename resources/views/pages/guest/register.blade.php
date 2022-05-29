@@ -8,7 +8,7 @@
             <article class="content__container">
                 <form class="wishlist__form"  method="POST">
                     @csrf
-                    <h2 class="content__subtitle">Who are you?</h2>
+                    <h2 class="content__subtitle">{{ucfirst(__('who are you?'))}} </h2>
 
                     <div class="wishlist__container">
 
@@ -23,23 +23,23 @@
 
                         <div class="wishlist__wrapper">
                             <div class="wishlist__inner">
-                                <label for="firstname" class="wishlist__title">Firstname</label>
+                                <label for="firstname" class="wishlist__title">{{ucfirst(__('firstname'))}} </label>
                                 <input class="wishlist__input" type="text" name="firstname" id="firstname">
                             </div>
                         </div>
                         <div class="wishlist__wrapper">
                             <div class="wishlist__inner">
-                                <label for="lastname" class="wishlist__title">Lastname</label>
+                                <label for="lastname" class="wishlist__title">{{ucfirst(__('lastname'))}} </label>
                                 <input class="wishlist__input" type="text" name="lastname" id="lastname">
                             </div>
                         </div>
                         <div class="wishlist__wrapper">
                             <div class="wishlist__inner">
-                                <label for="email" class="wishlist__title">Email</label>
+                                <label for="email" class="wishlist__title">{{ucfirst(__('email'))}} </label>
                                 <input class="wishlist__input" type="email" name="email" id="email">
                             </div>
                         </div>
-                        <button type="submit" class="button__submit">Go to list</button>
+                        <button type="submit" class="button__submit">{{ucfirst(__('visit wishlist'))}} </button>
                     </div>
                 </form>
             </article>

@@ -13,12 +13,12 @@
         <section class="content">
             <article class="content__container">
                 <div class="content__inner--flex">
-                    <h2 class="content__subtitle">Favorites</h2>
+                    <h2 class="content__subtitle">{{ucfirst(__('favorites'))}}</h2>
                 </div>
                 @if (count($articles) === 0)
                     <div class="favorites__container">
                         <img class="favorites__img" src="{{asset('images/favorites.svg')}}" alt="">
-                        <p class="favorites__title"> You have no favorite items.. </p>
+                        <p class="favorites__title"> {{ucfirst(__('you have no favorite items...'))}} </p>
                     </div>
                 @else
                     <div class="content__inner--grid">

@@ -31,7 +31,7 @@ class GuestController extends Controller
         $guest_id = session()->get('guest_id');
 
         if(Cart::session($guest_id)->get($r->article_id)) {
-            return redirect()->back()->with('error', 'Product already in basket');
+            return redirect()->back()->with('error', ucfirst(__('product already in basket!')));
         } else {
             // Fill in guest_id in session
             Cart::session($guest_id)->add(array(
@@ -42,7 +42,7 @@ class GuestController extends Controller
                 'attributes' => array(),
                 'associatedModel' => $article
             ));
-            return redirect()->back()->with('status', 'Product was added to basket');
+            return redirect()->back()->with('status', ucfirst(__('product added to basket!')));
         }
     }
 
@@ -50,7 +50,7 @@ class GuestController extends Controller
         $guest_id = session()->get('guest_id');
         Cart::session($guest_id)->remove($r->article_id);
 
-        return redirect()->back()->with('status', 'Item removed from cart');
+        return redirect()->back()->with('status', ucfirst(__('item removed from basket!')));
     }
 
     public function showProductsInBasket($slug){
@@ -76,7 +76,7 @@ class GuestController extends Controller
         if($wishlist->password === $r->password) {
             return redirect()->route('guest.register', ['slug' => $r->slug]);
         } else {
-            return redirect()->back()->with('error', 'Password is incorrect');
+            return redirect()->back()->with('error', ucfirst(__('password is incorrect!')));
         }
     }
 
@@ -90,7 +90,7 @@ class GuestController extends Controller
             'firstname' => 'required|string|max:255',
             'lastname' => 'required|string|max:255',
             'email' => 'required|email',
-        ]);
+        ],[], ['firstname' => ucfirst(__('firstname')), 'lastname' => ucfirst(__('lastname')), 'email' => ucfirst(__('email'))]);
 
         // Find guest if already exists
         $guest = Guest::where('email', $r->email)->first();;

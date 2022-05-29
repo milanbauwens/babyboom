@@ -36,7 +36,7 @@
                         </div>
 
                         <div class="detail__inner">
-                            <h3 class="detail__subtitle">Shop</h3>
+                            <h3 class="detail__subtitle">{{ucfirst(__('shop'))}}</h3>
                             <a class="detail__shop--link" href="{{$article->shop->url}}" target="_blank">
                                 @if ($article->shop->name ==='Bollebuik')
                                     <img class="detail__shop" src="{{asset('storage/logos/bollebuik-logo.jpeg')}}" alt="Logo of {{$article->shop->name}}">
@@ -49,25 +49,25 @@
                         </div>
 
                         <div class="detail__inner">
-                            <h3 class="detail__subtitle">Description</h3>
+                            <h3 class="detail__subtitle">{{ucfirst(__('description'))}}</h3>
                             @if ($article->description)
                                 <p class="detail__description">{{$article->description}}</p>
                             @else
-                                <p class="detail__description">This product has no description</p>
+                                <p class="detail__description">{{ucfirst(__('this product has no description.'))}}</p>
                             @endif
                         </div>
 
                         <div class="detail__inner">
-                            <h3 class="detail__subtitle">Identifier</h3>
+                            <h3 class="detail__subtitle">{{ucfirst(__('identifier'))}}</h3>
                             <p class="detail__identifier">{{$article->identifier}}</p>
                         </div>
 
                         <div class="detail__inner">
-                            <a href="{{route('wishlists.add-product', ['article_id' => $article->id])}}" class="button__submit">Add to wishlist <i style="margin-left: 5px" class="bi bi-plus-lg "></i></a>
+                            <a href="{{route('wishlists.add-product', ['article_id' => $article->id])}}" class="button__submit">{{ucfirst(__('add to wishlist'))}} <i style="margin-left: 5px" class="bi bi-plus-lg "></i></a>
                             @if ($favorite)
-                                <a href="{{route('favorites.delete', ['favorite_id' => $favorite->id, 'article_id' => $article->id])}}" class="button__register">Remove from favorites <i style="margin-left: 5px" class="bi bi-heart-fill "></i></a>
+                                <a href="{{route('favorites.delete', ['favorite_id' => $favorite->id, 'article_id' => $article->id])}}" class="button__register">{{ucfirst(__('remove from favorites'))}} <i style="margin-left: 5px" class="bi bi-heart-fill "></i></a>
                             @else
-                                <a href="{{route('favorites.add', ['article_id' => $article->id])}}" class="button__login">Add to favorites <i style="margin-left: 5px" class="bi bi-heart "></i></a>
+                                <a href="{{route('favorites.add', ['article_id' => $article->id])}}" class="button__login">{{ucfirst(__('add to favorites'))}} <i style="margin-left: 5px" class="bi bi-heart "></i></a>
                             @endif
                         </div>
                     </article>

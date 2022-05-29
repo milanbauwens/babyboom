@@ -15,7 +15,7 @@
                     <form action="{{route('settings.update')}}" method="POST">
                         <div class="content__inner--flex">
                             @csrf
-                            <h2 class="content__subtitle">Preferences</h2>
+                            <h2 class="content__subtitle">{{ ucfirst(__('profile settings')) }}</h2>
                                 @if (Route::getCurrentRoute()->getName() === 'settings.edit')
                                     <button type="submit" id="editSettings" class="button__edit">
                                         <i class="bi bi-check-lg button__edit--inner"></i>
@@ -35,7 +35,7 @@
                             @endif
                             <div id="userData" class="settings__user">
                                 <div class="settings__inner">
-                                    <h3 class="settings__title">Firstname</h3>
+                                    <h3 class="settings__title">{{ ucfirst(__('firstname')) }}</h3>
                                     @if (Route::getCurrentRoute()->getName() === 'settings.edit')
                                         <input class="settings__input" type="text" name="firstname" value="{{$user->firstname}}">
                                     @else
@@ -43,7 +43,7 @@
                                     @endif
                                 </div>
                                 <div class="settings__inner">
-                                    <h3 class="settings__title">Lastname</h3>
+                                    <h3 class="settings__title">{{ ucfirst(__('lastname')) }}</h3>
                                     @if (Route::getCurrentRoute()->getName() === 'settings.edit')
                                         <input class="settings__input" type="text" name="lastname" value="{{$user->lastname}}">
                                     @else
@@ -51,7 +51,7 @@
                                     @endif
                                 </div>
                                 <div class="settings__inner">
-                                    <h3 class="settings__title">Email</h3>
+                                    <h3 class="settings__title">{{ ucfirst(__('email')) }}</h3>
                                     @if (Route::getCurrentRoute()->getName() === 'settings.edit')
                                         <input class="settings__input" type="text" name="email" value="{{$user->email}}">
                                     @else

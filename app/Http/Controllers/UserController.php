@@ -32,6 +32,6 @@ class UserController extends Controller
         $userEntity->email = $r->email;
         $userEntity->save();
 
-        return redirect()->route('settings')->with('status', "We've updated your profile succesfully!");
+        return redirect()->route('settings')->with('status', ucfirst(__("we've updated your profile succesfully!")));
     }
 }

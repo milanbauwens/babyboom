@@ -2,7 +2,7 @@
 @use "../../abstracts/variables.scss" as v;
 
 .auth {
-    &__error {
+    &__error, &__status {
         text-align: center;
         border: 2px solid map-get(v.$colors,pink-900 );
         margin-bottom: 15px;

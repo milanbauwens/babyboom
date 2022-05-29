@@ -28,7 +28,7 @@ class WishlistController extends Controller
             "expiration" => "required|date|after_or_equal:today",
             "description" => "required|max:500",
             "password" => "required|min:6|alpha_num",
-        ]);
+        ],[], ['name' => ucfirst(__('name')), 'expiration' => ucfirst(__('expiration date')), 'description' => ucfirst(__('description')), 'password' => ucfirst(__('password'))]);
 
         $user = auth()->user();
 
@@ -46,7 +46,7 @@ class WishlistController extends Controller
         $wishlist->slug = Str::slug($r->name . '_' . $wishlist->id);
         $wishlist->save();
 
-        return redirect()->route('wishlists')->with('status', 'Wishlist was made succesfully!');
+        return redirect()->route('wishlists')->with('status', ucfirst(__("wishlist was made succesfully!")));
     }
 
     public function editWishlist($id){
@@ -55,11 +55,11 @@ class WishlistController extends Controller
         if($wishlist->expired) {
             $wishlist->expired = false;
             $wishlist->save();
-            return redirect()->back()->with('expiration', 'Wishlist is open for guests');
+            return redirect()->back()->with('expiration', ucfirst(__('wishlist is open for guests!')));
         } else {
             $wishlist->expired = true;
             $wishlist->save();
-            return redirect()->back()->with('expiration', 'Wishlist is now closed for guests');
+            return redirect()->back()->with('expiration', ucfirst(__('wishlist is now closed for guests!')));
         }
     }
 }

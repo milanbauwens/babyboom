@@ -24,14 +24,14 @@ class FavoriteController extends Controller
                 ->first();
 
         if($checkifExists) {
-            return redirect()->route('products.detail', ['id' => $article_id])->with('error', 'Product already in favorites!');
+            return redirect()->route('products.detail', ['id' => $article_id])->with('error', ucfirst(__('product already in favorites!')));
         } else {
             $favoriteEntity = new Favorite();
             $favoriteEntity->article_id = $article_id;
             $favoriteEntity->user_id = $user->id;
             $favoriteEntity->save();
 
-            return redirect()->route('products.detail', ['id' => $article_id])->with('status', 'Product added to favorites!');
+            return redirect()->route('products.detail', ['id' => $article_id])->with('status', ucfirst(__('product added to favorites!')));
         }
     }
 
@@ -40,6 +40,6 @@ class FavoriteController extends Controller
 
         $favorite->delete();
 
-        return redirect()->route('products.detail', ['id' => $article_id])->with('status', 'Product removed from favorites!');
+        return redirect()->route('products.detail', ['id' => $article_id])->with('status', ucfirst(__('product removed from favorites!')));
     }
 }

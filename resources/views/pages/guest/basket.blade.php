@@ -7,12 +7,12 @@
         <section class="content">
             <article class="content__container">
                 <div class="content__inner--flex">
-                    <h2 class="content__subtitle">Basket</h2>
+                    <h2 class="content__subtitle">{{ucfirst(__('basket'))}}</h2>
                 </div>
                 @if (count($articles) === 0)
                     <div class="favorites__container">
                         <img class="favorites__img" src="{{asset('images/favorites.svg')}}" alt="">
-                        <p class="favorites__title"> Your basket is still empty </p>
+                        <p class="favorites__title"> {{ucfirst(__('your basket is still empty'))}} </p>
                     </div>
                 @else
                     <div class="content__inner--grid">
@@ -27,10 +27,10 @@
             <article class="basket">
                 <div class="basket__price">
                     <div class="basket__inner--flex">
-                        <h3>Total:</h3>
+                        <h3>{{ucfirst(__('total'))}}:</h3>
                         <p class="basket__price--total">€ {{$cart->getTotal()}} </p>
                     </div>
-                    <a href="{{route('guest.checkout', ['slug' => Route::input('slug')])}}" class="button__checkout">Checkout</a>
+                    <a href="{{route('guest.checkout', ['slug' => Route::input('slug')])}}" class="button__checkout">{{ucfirst(__('checkout'))}}</a>
                 </div>
             </article>
             @endif

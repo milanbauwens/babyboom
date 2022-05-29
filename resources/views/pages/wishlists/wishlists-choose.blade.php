@@ -15,13 +15,13 @@
                 </div>
                     @if (count($wishlists) === 0)
                             <div class="content__container--center">
-                                <h2 class="content__subtitle">You have no wishlists...</h2>
-                                <a class="button__login" href="{{route('wishlists.create')}}">Create one now</a>
+                                <h2 class="content__subtitle">{{ucfirst(__('you have no wishlists...'))}}</h2>
+                                <a class="button__login" href="{{route('wishlists.create')}}">{{ucfirst(__('create a wishlist'))}}</a>
                             </div>
                         @else
                             <div class="content__inner">
-                                <h2 class="content__subtitle">Select a wishlist</h2>
-                                <p class="content__paragraph">Select one or more wishlists where you want to add the product </p>
+                                <h2 class="content__subtitle">{{ucfirst(__('select a wishlist'))}}</h2>
+                                <p class="content__paragraph">{{ucfirst(__('select one or more wishlists where you want to add the product'))}}</p>
                             </div>
 
                             {{-- Display errors to user --}}
@@ -39,7 +39,7 @@
                                     <label class="wishlist" for="{{$wishlist->id}}">
                                         <div class="wishlist__inner">
                                             <h3 class="wishlist__name">{{$wishlist->name}}</h3>
-                                            <p class="wishlist__progress">20% completed</p>
+                                            <p class="wishlist__progress">{{ ucfirst(__('expires')) . ': ' . date_format(date_create($wishlist->expiration_date), 'd/m/Y')}}</p>
                                         </div>
                                         <div class="wishlist__in    ner">
                                             <img class="wishlist__img" src="{{asset('images/wishlist.svg')}}" alt="Illustration of a gifts from wishlists - Babyboom">
@@ -49,7 +49,7 @@
 
                                 <input type="hidden" name="article_id" value="{{$article_id}}">
 
-                                <button type="submit" class="button__submit" id="wishlistSubmit"> Add to list </button>
+                                <button type="submit" class="button__submit" id="wishlistSubmit">{{ ucfirst(__('add to list'))}}</button>
                             </form>
                         @endif
             </article>

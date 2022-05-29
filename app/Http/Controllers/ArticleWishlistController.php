@@ -31,7 +31,7 @@ class ArticleWishlistController extends Controller
             ->first();
 
             if($checkifExists) {
-                return redirect()->route('wishlists.add-product', ['article_id' => $r->article_id])->with('error', 'Product already in one of the wishlists!');
+                return redirect()->route('wishlists.add-product', ['article_id' => $r->article_id])->with('error', ucfirst(__('product already in one of the wishlists!')));
             } else {
                 $wishlistArticleEntity = new ArticleWishlist();
                 $wishlistArticleEntity->wishlist_id = $wishlist;
@@ -39,7 +39,7 @@ class ArticleWishlistController extends Controller
                 $wishlistArticleEntity->save();
             }
         }
-        return redirect()->route('products.detail', ['id' => $r->article_id])->with('status', 'Product added to wishlist!');
+        return redirect()->route('products.detail', ['id' => $r->article_id])->with('status', ucfirst(__('product added to wishlist!')));
     }
 
     public function showWishlistDetail($wishlist_id){
@@ -59,7 +59,7 @@ class ArticleWishlistController extends Controller
 
         $articlewishlist->delete();
 
-        return redirect()->back()->with('status', 'Product removed from wishlist');
+        return redirect()->back()->with('status', ucfirst(__('product removed from wishlist!')));
     }
 
     public function deleteWishlist($id){
@@ -72,6 +72,6 @@ class ArticleWishlistController extends Controller
         $wishlist->delete();
 
 
-        return redirect()->route('wishlists')->with('status', 'Wishlist was deleted');
+        return redirect()->route('wishlists')->with('status', ucfirst(__('wishlist was deleted!')));
     }
 }

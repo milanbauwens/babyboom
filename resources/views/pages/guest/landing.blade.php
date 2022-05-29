@@ -14,8 +14,8 @@
             <img class="landing__img" src="{{asset('images/landingpage.png')}}" alt="https://www.freepik.com/vectors/different-ages'>Different ages vector created by pch.vector - www.freepik.com">
             <div class="landing__inner">
                 <div class="landing__text">
-                    <h1 class="landing__header">Welcome to <span class="landing__header--pink">babyboom</span></h1>
-                    <p class="landing__paragraph--guest">Someone is expecting a baby. Help them out by buying what they need most!</p>
+                    <h1 class="landing__header">{{ucfirst(__('welcome to'))}} <span class="landing__header--pink">babyboom</span></h1>
+                    <p class="landing__paragraph--guest">{{ucfirst(__('Someone is expecting a baby. Help them out by buying what they need most!'))}}</p>
                 </div>
 
                 @if(session()->has('error'))
@@ -28,7 +28,7 @@
                     @csrf
                     <!-- Password -->
                         <input type="hidden" name="wishlist_slug" value="{{Route::input('slug')}}">
-                        <x-label  class="form__label--block" for="password" :value="__('Password')" />
+                        <label  class="form__label--block" for="password">{{ucfirst(__('password'))}}</label>
 
                         <x-input  style="background-image:url('{{ asset('images/lock-fill.svg')}}')" class="form__input" id="password"
                                         type="password"
@@ -36,7 +36,7 @@
                                         required />
 
                         <button type="submit" class="button__login">
-                            Visit Wishlist
+                            {{ucfirst(__("get access"))}}
                         </button>
                 </form>
             </div>

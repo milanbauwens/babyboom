@@ -11,7 +11,7 @@
                 </div>
                 <form class="wishlist__form" action="{{route('wishlists.create')}}" method="POST">
                     @csrf
-                    <h2 class="content__subtitle">Create wishlist</h2>
+                    <h2 class="content__subtitle">{{ucfirst(__('create a wishlist'))}}</h2>
 
                     <div class="wishlist__container">
 
@@ -26,29 +26,29 @@
 
                         <div class="wishlist__wrapper">
                             <div class="wishlist__inner">
-                                <label for="name" class="wishlist__title">Give your list a name</label>
+                                <label for="name" class="wishlist__title">{{ucfirst(__('give your list a name'))}}</label>
                                 <input class="wishlist__input" type="text" name="name" id="name" placeholder="e.g George">
                             </div>
                         </div>
                         <div class="wishlist__wrapper">
                             <div class="wishlist__inner">
-                                <label for="description" class="wishlist__title">Write a short description</label>
+                                <label for="description" class="wishlist__title">{{ucfirst(__('write a short description'))}}</label>
                                 <textarea class="wishlist__input--textarea" name="description" id="description" placeholder="Yay! There is a new baby in town"></textarea>
                             </div>
                         </div>
                         <div class="wishlist__wrapper">
                             <div class="wishlist__inner">
-                                <label for="expiration" class="wishlist__title">Choose an expiration date</label>
+                                <label for="expiration" class="wishlist__title">{{ucfirst(__('choose an expiration date'))}}</label>
                                 <input class="wishlist__input" type="date" name="expiration" min="{{$today}}}" id="expiration" value="{{date('d/m/Y')}}" />
                             </div>
                         </div>
                         <div class="wishlist__wrapper">
                             <div class="wishlist__inner">
-                                <label for="expiration" class="wishlist__title">Pick a password for guests</label>
+                                <label for="expiration" class="wishlist__title">{{ucfirst(__('pick a password for guests'))}}</label>
                                 <input class="wishlist__input" type="text" name="password" id="expiration"/>
                             </div>
                         </div>
-                        <button type="submit" class="button__submit">Create</button>
+                        <button type="submit" class="button__submit">{{ucfirst(__("Create"))}}</button>
                     </div>
                 </form>
             </article>

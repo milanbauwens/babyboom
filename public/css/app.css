@@ -434,13 +434,18 @@
   border-radius: 60px;
   margin-bottom: 20px;
 }
-.button__delete {
+.button__delete, .button__delete--blue {
   cursor: pointer;
   text-decoration: underline;
   color: #D50C68;
   font-family: "Exo", sans-serif;
   font-size: 15px;
   font-weight: 400;
+}
+.button__delete--blue {
+  color: #112762;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 .button__register, .button__register--bottom {
   cursor: pointer;
@@ -988,7 +993,7 @@
   background-color: #D50C68;
 }
 
-.auth__error {
+.auth__error, .auth__status {
   text-align: center;
   border: 2px solid #D50C68;
   margin-bottom: 15px;
@@ -997,18 +1002,18 @@
   width: 70vw;
   max-width: 800px;
 }
-.auth__error--text {
+.auth__error--text, .auth__status--text {
   color: #D50C68;
   font-family: "Exo", sans-serif;
   font-weight: 500;
   font-size: 17px;
   margin-bottom: 5px;
 }
-.auth__error--list {
+.auth__error--list, .auth__status--list {
   list-style: none;
   margin: 0;
 }
-.auth__error--item {
+.auth__error--item, .auth__status--item {
   font-family: "Raleway", sans-serif;
   font-weight: 300;
   font-size: 15px;
