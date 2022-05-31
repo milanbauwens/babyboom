@@ -53,7 +53,7 @@
                 </button>
 
             </form>
-            <p class="auth__subtitle">{{ucfirst(__("already have an account?"))}}<a class="auth__subtitle--bold" href="{{route('login')}}">{{ucfirst(__("Log in"))}}</a></p>
+            <p class="auth__subtitle">{{ucfirst(__("already have an account?"))}}<a class="auth__subtitle--bold" href="{{route('login')}}"> {{ucfirst(__("Log in"))}}</a></p>
             <div class="margin"></div>
         </div>
     </div>
