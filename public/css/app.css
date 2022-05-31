@@ -474,7 +474,7 @@
   text-decoration: none;
   width: 30px;
   height: 30px;
-  border-radius: 50%;
+  border-radius: 10px;
   background-color: #112762;
   display: flex;
   align-items: center;
@@ -494,7 +494,7 @@
   text-decoration: none;
   width: 30px;
   height: 30px;
-  border-radius: 50%;
+  border-radius: 10px;
   background-color: #D50C68;
   display: flex;
   align-items: center;
@@ -512,7 +512,7 @@
   text-decoration: none;
   width: 30px;
   height: 30px;
-  border-radius: 50%;
+  border-radius: 10px;
   background-color: #D50C68;
   display: flex;
   align-items: center;
