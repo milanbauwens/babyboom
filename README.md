@@ -1,4 +1,4 @@
-![Logo](url('192x192.png'))
+<img src="public/192x192.png">
 
 
 
