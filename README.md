@@ -4,7 +4,23 @@
 
 # Babyboom 
 
-An application designed to help young families create wishlists which they can share with their family and friends. This app is made purely for educational purposes. 
+## What is the application about
+
+Babyboom is an application designed to help young families create wishlists which they can share with their family and friends. The application provides products from May Mays, Bollebuik and Mimi Baby which users can add to their wishlists. A wishlist can be visited without logging in. 
+
+This application provides a section for authenticated users:
+- create wishlists
+- add products to wishlists
+- add products to favorites
+- change user information
+- search products
+
+There is also a section for guests, which is made for family and friends from the user. This section can be entered with a password choses by the user who made the wishlist. This section contains: 
+- wishlist detail with all the products added by the user
+- product basket
+- payment page with Mollie
+
+This app is made purely for educational purposes.
 
 ## Authors
 
@@ -15,12 +31,15 @@ An application designed to help young families create wishlists which they can s
 
 - PHP8.0 or higher
 - MySQL
+
 ## Built with
 
 - Laravel 9
 - SASS
 - Composer
 - MySQL
+- Mollie
+
 ## Deployment
 
 Clone the repository and go to {application directory} directory
