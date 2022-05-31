@@ -4,7 +4,7 @@
 ## Product details
 <hr>
 
-<img src="{{url('storage/' . $article->Image->path))}}" />
+<img src="{{url('storage/' . $article->Image->path)}}" />
 
 Name:<br>
 {{$article->name}} <br>
