@@ -36,6 +36,4 @@ Name:<br>
 Email:<br>
 {{$guest->email}} <br>
 
-<br>
-{{ config('app.name') }}
 @endcomponent
