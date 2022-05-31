@@ -49,6 +49,9 @@
                             </div>
                         </div>
                         <button type="submit" class="button__submit">{{ucfirst(__("Create"))}}</button>
+                        <div class="content__inner--center">
+                            <a class="button__delete" href="{{route('wishlists')}}">{{ucfirst(__("annuleren"))}}</a>
+                        </div>
                     </div>
                 </form>
             </article>

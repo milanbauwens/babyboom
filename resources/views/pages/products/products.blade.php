@@ -7,7 +7,7 @@
         <header class="header--small">
             <div class="header__inner">
                 <form action="{{route('products.search')}}">
-                    <input style="background-image: url('{{ asset('images/search.svg')}}')" class="header__search" value="{{old('search')}}" type="text" placeholder="{{ucfirst(__('search products'))}}" name="search" id="search">
+                    <input style="background-image: url('{{ asset('images/search.svg')}}')" class="header__search" value="{{request('search')}}" type="text" placeholder="{{ucfirst(__('search products'))}}" name="search" id="search">
                 </form>
             </div>
         </header>

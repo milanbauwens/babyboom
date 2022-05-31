@@ -8,7 +8,7 @@
                 <article class="content__container">
                     @auth
                         <div class="content__inner--flex">
-                                <a class="button__back" href="{{route('wishlists')}}"><i class="bi bi-arrow-left button__add--inner"></i></a>
+                            <a class="button__back" href="{{route('wishlists')}}"><i class="bi bi-arrow-left button__add--inner"></i></a>
                         </div>
                     @endauth
                 </article>

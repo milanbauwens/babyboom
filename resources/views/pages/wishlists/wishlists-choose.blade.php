@@ -11,7 +11,7 @@
         <section class="content">
             <article class="content__container">
                 <div class="content__inner--bottom">
-                    <a class="button__back" href="{{url()->previous()}}"><i class="bi bi-arrow-left button__add--inner"></i></a>
+                    <a class="button__back" href="{{route('wishlists')}}"><i class="bi bi-arrow-left button__add--inner"></i></a>
                 </div>
                     @if (count($wishlists) === 0)
                             <div class="content__container--center">

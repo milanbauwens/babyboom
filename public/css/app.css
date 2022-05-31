@@ -436,6 +436,7 @@
 }
 .button__delete, .button__delete--blue {
   cursor: pointer;
+  text-align: center;
   text-decoration: underline;
   color: #D50C68;
   font-family: "Exo", sans-serif;
@@ -885,6 +886,10 @@
     display: block;
     margin-bottom: 50px;
   }
+}
+.content__inner--center {
+  margin-top: 20px;
+  text-align: center;
 }
 
 .pagination {

@@ -476,7 +476,6 @@ class ScrapeController extends Controller
 
                 $fileSystem->putFileAs($path, $article->image, $randomName);
 
-
                 $image = new Image();
                 $image->path = $fullPath;
                 $image->alt = $article->name;

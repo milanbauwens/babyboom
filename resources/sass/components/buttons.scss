@@ -41,6 +41,7 @@
 
     &__delete {
         cursor: pointer;
+        text-align: center;
         text-decoration: underline;
         color:map.get(v.$colors, pink-900) ;
         font-family: v.$font-exo;
