@@ -47,7 +47,7 @@
                             @endauth
                             <div class="detail__inner">
                                 <h3 class="detail__subtitle--pink">{{ucfirst(__('creator'))}}</h3>
-                                <p class="detail__data">{{$wishlist->user->firstname . ' ' . $wishlist->user->firstname}}</p>
+                                <p class="detail__data">{{$wishlist->user->firstname . ' ' . $wishlist->user->lastname}}</p>
                             </div>
                             <div class="detail__inner">
                                 <h3 class="detail__subtitle--pink">{{ucfirst(__('expiration date'))}}</h3>
