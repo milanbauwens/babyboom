@@ -4,6 +4,10 @@
 
 # Babyboom 
 
+## Link to site
+
+[Link to babyboom](http://babyboom.milanbauwens.be)
+
 ## What is the application about
 
 Babyboom is an application designed to help young families create wishlists which they can share with their family and friends. The application provides products from May Mays, Bollebuik and Mimi Baby which users can add to their wishlists. A wishlist can be visited without logging in. 
