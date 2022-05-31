@@ -74,10 +74,7 @@
             </article>
 
             <article class="content__container">
-                <div class="content__inner--flex">
-                    <h2 class="content__subtitle">{{ucfirst(__('products'))}}</h2>
-                    <a href="{{action('ExportController@export')}}"></a>
-                </div>
+                <h2 class="content__subtitle">{{ucfirst(__('products'))}}</h2>
 
             @auth
                 @if(session()->has('status'))
