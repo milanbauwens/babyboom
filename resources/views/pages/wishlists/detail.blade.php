@@ -118,7 +118,7 @@
                 @else
                     <div class="content__inner--grid">
                         @foreach ($articles as $article)
-                            @include('components.product-component')
+                                @include('components.product-component')
                         @endforeach
                 @endif
             @endguest
