@@ -9,7 +9,6 @@ use App\Models\Guest;
 use App\Models\User;
 use App\Models\Wishlist;
 use Darryldecode\Cart\Facades\CartFacade as Cart;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;

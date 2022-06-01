@@ -6,7 +6,6 @@ use App\Models\Article;
 use App\Models\Guest;
 use App\Models\Wishlist;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 

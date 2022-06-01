@@ -6,7 +6,6 @@ use App\Models\Article;
 use App\Models\ArticleWishlist;
 use App\Models\Wishlist;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class ArticleWishlistController extends Controller
 {

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Shop;
 use App\Models\Wishlist;
-use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {

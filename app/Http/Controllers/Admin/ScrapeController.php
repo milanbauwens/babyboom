@@ -7,7 +7,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Models\ArticleWishlist;
 use App\Models\Category;
-use App\Models\Favorite;
 use App\Models\Image;
 use App\Models\Shop;
 use Goutte\Client;
@@ -282,6 +281,8 @@ class ScrapeController extends Controller
         }
 
         $this->storeMaymaysArticles($articles, $url);
+
+        return redirect()->route('admin.products');
     }
 
     private function scrapeBollebuikArticles($url) {
@@ -299,6 +300,8 @@ class ScrapeController extends Controller
         }
 
         $this->storeBollebuikArticles($articles, $url);
+
+        return redirect()->route('admin.products');
     }
 
     public function scrapeMimibabyArticles($url) {
@@ -315,6 +318,8 @@ class ScrapeController extends Controller
         }
 
         $this->storeMimibabyArticles($articles, $url);
+
+        return redirect()->route('admin.products');
     }
 
     private function scrapeMaymaysPageData($crawler) {
